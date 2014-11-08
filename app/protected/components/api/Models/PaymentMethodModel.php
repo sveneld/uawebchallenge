@@ -6,12 +6,19 @@
  * Time: 16:28
  */
 
-class PaymentMethodModel {
-
+class PaymentMethodModel extends DataContainerResponse
+{
     public function getList(){
-        $data = new stdClass();
-        $data->SomeVal = 'coool555';
-        $this->addData($data);
+        $result = YPaymentMethod::model()->findAll();
+        foreach($result as $item){
+            $row = new stdClass();
+            $row->Id = $item->Id;
+            $row->Name = $item->Name;
+            $row->Cost = $item->Cost;
+            $row->AdditionalParam = $item->AdditionalParam;
+            $this->addData($row);
+        }
+        return $this;
     }
 
 } 

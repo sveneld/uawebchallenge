@@ -8,13 +8,16 @@
 
 class ShippingMethodModel extends DataContainerResponse {
 
-    public function getList(DataContainer $data = null){
-        $result = YShippingMethod::model()->getList();
-
-        dump($result,1);
-
-        $data = new stdClass();
-        $data->SomeVal = 'coool555';
-        $this->addData($data);
+    public function getList(stdClass $data = null){
+        $result = YShippingMethod::model()->findAll();
+        foreach($result as $item){
+            $row = new stdClass();
+            $row->Id = $item->Id;
+            $row->Name = $item->Name;
+            $row->Cost = $item->Cost;
+            $row->AdditionalParam = $item->AdditionalParam;
+            $this->addData($row);
+        }
+        return $this;
     }
 }
