@@ -19,8 +19,8 @@ class TestController extends Controller
 //        var_dump($rmc->getData());
 //        var_dump($rmc);
 
-        $t = (new RemoteModelCall())->Run($dc);
-//        $t = $rmc->Run($dc);
+        $t = new RemoteModelCall();
+        dump($t->Run($dc));
 //        var_dump('$tttttttttt');
 //        var_dump($t);
         var_dump($t->getData());

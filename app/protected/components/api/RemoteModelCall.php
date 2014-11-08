@@ -1,7 +1,7 @@
 <?php
 class RemoteModelCall extends DataContainerResponse {
 
-    public function Run(DataContainer $DataContainer){
+    public function run(DataContainer $DataContainer){
 
         //Key validation
         if (empty($DataContainer->Key)){
