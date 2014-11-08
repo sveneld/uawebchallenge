@@ -9,7 +9,7 @@
 class ShippingMethod extends BaseValidator
 {
     public function getList(stdClass $data = null){
-        $this->Model->getList($data);
+        return $this->Model->getList($data);
     }
 
 }

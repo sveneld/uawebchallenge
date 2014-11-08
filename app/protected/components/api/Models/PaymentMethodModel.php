@@ -9,7 +9,11 @@
 class PaymentMethodModel extends DataContainerResponse
 {
     public function getList(){
-        $result = YPaymentMethod::model()->findAll();
+        $criteria = new CDbCriteria();
+        if (!empty(Affiliate::getAllowed()->paymentMethod)){
+            $criteria->addInCondition('Id', Affiliate::getAllowed()->paymentMethod);
+        }
+        $result = YPaymentMethod::model()->findAll($criteria);
         foreach($result as $item){
             $row = new stdClass();
             $row->Id = $item->Id;

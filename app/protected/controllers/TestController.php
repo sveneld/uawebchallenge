@@ -161,10 +161,12 @@ class TestController extends Controller
     }
 
     public function actionV(){
+        dump(md5('магазин 1'));
+        dump(md5('магазин 2'));
         $dc = new DataContainer();
         $dc->Key = 'somekey';
-        $dc->Class = 'Order';
-        $dc->Method = 'get';
+        $dc->Class = 'ShippingMethod';
+        $dc->Method = 'getList';
 
         $data = new stdClass();
         $data->IdOrder = 'asdfasdf';

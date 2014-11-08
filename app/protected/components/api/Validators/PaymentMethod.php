@@ -10,7 +10,7 @@ class PaymentMethod extends BaseValidator
 {
     public function getList($data)
     {
-        $this->Model->getList($data);
+        return $this->Model->getList($data);
     }
 
 } 
