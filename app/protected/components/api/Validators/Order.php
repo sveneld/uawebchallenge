@@ -36,7 +36,7 @@ class Order extends BaseValidator {
             'AddressAdditional' => 'string',
         );
         if ($this->validate($data)){
-            $this->Model->addOrder($data);
+            return $this->Model->addOrder($data);
         } else {
             return $this;
         }
@@ -47,7 +47,7 @@ class Order extends BaseValidator {
             'IdOrder' => 'validateInt',
         );
         if ($this->validate($data)){
-            $this->Model->get($data);
+            return $this->Model->get($data);
         } else {
             return $this;
         }
@@ -58,7 +58,7 @@ class Order extends BaseValidator {
             'IdOrder' => 'validateInt',
         );
         if ($this->validate($data)){
-            $this->Model->getStatus($data);
+            return $this->Model->getStatus($data);
         } else {
             return $this;
         }
