@@ -40,10 +40,8 @@ class RemoteModelCall extends DataContainerResponse {
 
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
-            $t = $Model->{$DataContainer->Method}($DataContainer->Data);
-            return $this->getData();
-            dump($Model->{$DataContainer->Method}($DataContainer->Data));
-            return $Model->{$DataContainer->Method}($DataContainer->Data);
+            $result = call_user_func(array($Model, $DataContainer->Method), $DataContainer->Data);
+            return $result->getData();
         } else {
             $this->addError('Method of class '.$DataContainer->Class.' not found!');
             return $this->getData();
