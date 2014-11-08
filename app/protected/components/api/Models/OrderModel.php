@@ -121,7 +121,6 @@ class OrderModel extends DataContainerResponse
         $data->PaymentMethodName = $order->PaymentMethodName;
         $data->IdPaymentMethod = $order->IdPaymentMethod;
         $data->IdOrderStatus = $order->IdOrderStatus;
-        $data->ApiKey = $order->ApiKey;
 
         $this->addData($data);
         return $this;
@@ -129,9 +128,33 @@ class OrderModel extends DataContainerResponse
 
     public function getList($data)
     {
-        $data = new stdClass();
-        $data->SomeVal = 'coool555';
-        $this->addData($data);
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $orders = YOrder::model()->findAll($criteria);
+        foreach ($orders as $order){
+            $data = new stdClass();
+            $data->IdOrder = $order->Id;
+            $data->FullName = $order->FullName;
+            $data->Phone = $order->Phone;
+            $data->PhoneAdditional = $order->PhoneAdditional;
+            $data->Country = $order->Country;
+            $data->City = $order->City;
+            $data->Address = $order->Address;
+            $data->AddressAdditional = $order->AddressAdditional;
+            $data->SubTotal = $order->SubTotal;
+            $data->ShippingTotal = $order->ShippingTotal;
+            $data->PaymantTotal = $order->PaymantTotal;
+            $data->Discount = $order->Discount;
+            $data->Fee = $order->Fee;
+            $data->Total = $order->Total;
+            $data->ShippingMethodName = $order->ShippingMethodName;
+            $data->IdShippingMethod = $order->IdShippingMethod;
+            $data->PaymentMethodName = $order->PaymentMethodName;
+            $data->IdPaymentMethod = $order->IdPaymentMethod;
+            $data->IdOrderStatus = $order->IdOrderStatus;
+            $this->addData($data);
+        }
+        return $this;
     }
 
     public function getStatus($data)
