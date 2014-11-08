@@ -132,10 +132,8 @@ class TestController extends Controller
         $data = new stdClass();
         $dc->Data =$data;
 
-        $data = (new RemoteModelCall())->run($dc);
-        dump($data);
-//        dump($data->getData());
-//        dump(json_encode($data->getData()));
+        $data = new RemoteModelCall();
+        dump($data->run($dc));
 
     }
 
