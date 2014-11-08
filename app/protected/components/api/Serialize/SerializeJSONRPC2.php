@@ -23,6 +23,8 @@ class SerializeJSONRPC2 implements Serialize
             }
             $resultArray[] = $jsonrpc2;
         }
+        if(!$data->getBatch() && isset($resultArray[0]))
+            $resultArray = $resultArray[0];
         return json_encode($resultArray);
     }
 
