@@ -21,9 +21,9 @@ class Product extends BaseValidator {
         return false;
     }
     protected function ManufacturerValidator($value){
-//        var_dump('ManufacturerValidator');
-        $this->addError('ManufacturerValidator error');
+        if (is_numeric($value)){
+            return true;
+        }
         return false;
-//        return true;
     }
 }

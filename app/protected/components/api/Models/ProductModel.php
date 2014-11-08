@@ -5,6 +5,7 @@ class ProductModel extends DataContainerResponse {
         $data = new stdClass();
         $data->SomeVal = 'coool555';
         $this->addData($data);
+        return $this;
     }
 
 }
