@@ -23,6 +23,7 @@
  * @property string $PaymentMethodName
  * @property string $IdPaymentMethod
  * @property string $IdOrderStatus
+ * @property string $ApiKey
  */
 class YOrder extends CActiveRecord
 {
@@ -42,10 +43,11 @@ class YOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Id', 'required'),
+			array('Id,ApiKey', 'required'),
 			array('Id', 'numerical', 'integerOnly'=>true),
 			array('FullName, Address, AddressAdditional, ShippingMethodName, PaymentMethodName', 'length', 'max'=>255),
 			array('Phone, PhoneAdditional, Country, City', 'length', 'max'=>45),
+			array('ApiKey', 'length', 'max'=>32),
 			array('SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total', 'length', 'max'=>15),
 			array('IdShippingMethod, IdPaymentMethod, IdOrderStatus', 'length', 'max'=>10),
 			// The following rule is used by search().
@@ -94,6 +96,7 @@ class YOrder extends CActiveRecord
 			'PaymentMethodName' => 'Payment Method Name',
 			'IdPaymentMethod' => 'Payment Method',
 			'IdOrderStatus' => 'Id Order Status',
+			'ApiKey' => 'Api Key',
 		);
 	}
 
@@ -134,6 +137,7 @@ class YOrder extends CActiveRecord
 		$criteria->compare('PaymentMethodName',$this->PaymentMethodName,true);
 		$criteria->compare('IdPaymentMethod',$this->IdPaymentMethod,true);
 		$criteria->compare('IdOrderStatus',$this->IdOrderStatus,true);
+		$criteria->compare('ApiKey',$this->ApiKey,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

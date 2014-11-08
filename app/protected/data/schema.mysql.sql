@@ -46,7 +46,8 @@ CREATE TABLE `orders` (
   `PaymentMethodName` varchar(255) DEFAULT NULL,
   `IdPaymentMethod` int(10) unsigned DEFAULT NULL,
   `IdOrderStatus` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`Id`)
+  `ApiKey` CHAR(32) NOT NULL,
+PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `payment_methods`;
