@@ -57,6 +57,8 @@ class OrderModel extends DataContainerResponse
         $order->IdOrderStatus = 1;
         $order->ApiKey = Affiliate::getApiKey();
         $order->IdAffiliate = Affiliate::getAffiliateId();
+        $order->OrderCreationDate = time();
+        $order->OrderModificationDate = time();
 
         $transaction = Yii::app()->db->beginTransaction();
         try {
