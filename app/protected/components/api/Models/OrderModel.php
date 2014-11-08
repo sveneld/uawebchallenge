@@ -178,8 +178,8 @@ class OrderModel extends DataContainerResponse
                 $pData->Sku = $product->Sku;
                 $pData->Price = $product->Price;
                 $pData->Quantity = $product->Quantity;
-                $data->Products[] = $pData;
             }
+            $data->Products[] = $pData;
             $this->addData($data);
         }
         return $this;
