@@ -6,8 +6,8 @@ class ProductModel extends DataContainerResponse
     public function getList($data)
     {
         $criteria = new CDbCriteria();
+        $criteria->with = array('Category');
         if (!empty(Affiliate::getAllowed()->productCategories) && empty($data->IdCategory)) {
-            $criteria->with = array('Category');
             $criteria->addInCondition('Category.IdCategory', Affiliate::getAllowed()->productCategories);
         }
         if (!empty($data->IdCategory)) {

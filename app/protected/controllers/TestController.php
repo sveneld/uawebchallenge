@@ -200,7 +200,7 @@ class TestController extends Controller
         $dc->Method = 'getList';
 
         $data = new stdClass();
-        $data->IdOrder = 'asdfasdf';
+        $data->IdCategory = 1;
         $dc->Data =$data;
 
         $data = new RemoteModelCall();

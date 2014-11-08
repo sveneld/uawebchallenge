@@ -6,7 +6,7 @@ class Product extends BaseValidator {
 
         );
         $this->ValidationMapUnnesessaryFields = array(
-            'CategoryId' => 'CategoryIdValidator',
+            'IdCategory' => 'IdCategoryValidator',
         );
         if ($this->validate($data)){
             return $this->Model->getList($data);
@@ -16,7 +16,7 @@ class Product extends BaseValidator {
         }
     }
 
-    protected function CategoryIdValidator($value){
+    protected function IdCategoryValidator($value){
         if (!is_numeric($value)){
             return false;
         }
