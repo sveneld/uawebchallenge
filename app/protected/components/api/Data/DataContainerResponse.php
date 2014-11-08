@@ -4,11 +4,11 @@ class DataContainerResponse{
     private $_Errors = array();
     private $_Response = array();
 
-    public function addData($Data){
+    protected function addData($Data){
         $this->_Data[] = $Data;
 
     }
-    public function addError($Error){
+    protected function addError($Error){
         $this->_Errors[] = $Error;
         //Выбрасываемся на первой ошибке, дабы не плодить лавину. Но на будущее оставляем масивчики
         return $this->getData();
