@@ -10,13 +10,13 @@ class TestController extends Controller
         $dc->Method = 'getList';
 
         $data = new stdClass();
-        $data->CategoryId = 1;
-        $data->ManufacturerId2 = 2;
+        $data->CategoryId = '1';
+        $data->ManufacturerId = '2';
 
         $dc->Data =$data;
 
         $data = (new RemoteModelCall())->run($dc);
-        dump($data);
+//        dump($data);
         dump($data->getData());
         dump(json_encode($data->getData()));
 
@@ -110,6 +110,12 @@ class TestController extends Controller
         $t = new RemoteModelCall();
         $t->run($dc);
         dump($t->getData());
+
+        $data = (new RemoteModelCall())->run($dc);
+        dump($data);
+        dump($data->getData());
+        dump(json_encode($data->getData()));
+
 
 //        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
 //        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();

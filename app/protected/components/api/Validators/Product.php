@@ -4,6 +4,10 @@ class Product extends BaseValidator {
     public function getList($data){
         $this->ValidationMap = array(
             'CategoryIdValidator' => 'CategoryId',
+//            'ManufacturerValidator' => 'ManufacturerId',
+        );
+        $this->ValidationMapUnnesessaryFields = array(
+//            'CategoryIdValidator' => 'CategoryId',
             'ManufacturerValidator' => 'ManufacturerId',
         );
         if ($this->validate($data)){
@@ -21,6 +25,7 @@ class Product extends BaseValidator {
         return false;
     }
     protected function ManufacturerValidator($value){
+//        if (empty($value)) { return true; }
         if (is_numeric($value)){
             return true;
         }
