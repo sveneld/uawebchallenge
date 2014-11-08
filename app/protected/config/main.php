@@ -51,10 +51,10 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=dbname',
+			'connectionString' => 'mysql:host=localhost;dbname=uaweb',
 			'emulatePrepare' => true,
-			'username' => 'dbuser',
-			'password' => '123',
+			'username' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 
