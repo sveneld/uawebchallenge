@@ -6,12 +6,13 @@ class TestController extends Controller
     public function actionTest(){
         $dc = new DataContainer();
         $dc->Key = 'somekey';
-        $dc->Class = 'Product';
-        $dc->Method = 'getList';
+        $dc->Class = 'Order';
+        $dc->Method = 'get';
 
         $data = new stdClass();
-        $data->CategoryId = 1;
-        $data->ManufacturerId2 = 2;
+//        $data->CategoryId = 1;
+//        $data->ManufacturerId2 = 2;
+        $data->IdOrder = 2;
 
         $dc->Data =$data;
 

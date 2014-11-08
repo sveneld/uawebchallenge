@@ -19,10 +19,15 @@ class BaseValidator extends RemoteModelCall {
     public function validate(&$data){
         $success = true;
         foreach($this->ValidationMap as $ValidationMethodName=>$DataFiledName){
-            $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
-            if (!$DataFieldValidationResult) {
+            if (!isset($data->$DataFiledName)) {
                 $success = false;
-                $this->addError('Validation of field "'.get_class($this->Model).' -> '.$DataFiledName.'" failed!');
+                $this->addError('Field "'.get_class($this->Model).' -> '.$DataFiledName.'" can not be empty!');
+            } else {
+                $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
+                if (!$DataFieldValidationResult) {
+                    $success = false;
+                    $this->addError('Validation of field "'.get_class($this->Model).' -> '.$DataFiledName.'" failed!');
+                }
             }
         }
         foreach($this->ValidationMapUnnesessaryFields as $ValidationMethodName=>$DataFiledName){

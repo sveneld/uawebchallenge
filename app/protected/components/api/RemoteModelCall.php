@@ -1,5 +1,6 @@
 <?php
 class RemoteModelCall extends DataContainerResponse {
+    public static $ApiKey=null;
 
     public function run(DataContainer $DataContainer){
 
@@ -17,6 +18,7 @@ class RemoteModelCall extends DataContainerResponse {
         if (strtotime($ApiKeys->ValidUntil) < time()){
             return $this->addError('Key is expired!');
         }
+        self::$ApiKey = $ApiKeys->Key;
 
         //Class validation
         if (empty($DataContainer->Class)){

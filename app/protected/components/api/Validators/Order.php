@@ -9,35 +9,42 @@
 class Order extends BaseValidator {
 
     public function getList($data){
-        if ($this->validate()){
+        if ($this->validate($data)){
             $this->Model->getList($data);
         } else {
-            //TODO:Обрабатываем ошибки из валидатора.
+            return $this;
         }
     }
 
     public function add($data){
-        if ($this->validate()){
+        if ($this->validate($data)){
             $this->Model->addOrder($data);
         } else {
-            //TODO:Обрабатываем ошибки из валидатора.
+            return $this;
         }
     }
 
     public function get($data){
-        if ($this->validate()){
+        $this->ValidationMap = array(
+            'validateIdOrder' => 'IdOrder',
+        );
+        if ($this->validate($data)){
             $this->Model->get($data);
         } else {
-            //TODO:Обрабатываем ошибки из валидатора.
+            return $this;
         }
     }
 
     public function getStatus($data){
-        if ($this->validate()){
+        if ($this->validate($data)){
             $this->Model->getStatus($data);
         } else {
-            //TODO:Обрабатываем ошибки из валидатора.
+            return $this;
         }
+    }
+
+    protected  function validateIdOrder($id){
+        return is_numeric($id);
     }
 
 } 
