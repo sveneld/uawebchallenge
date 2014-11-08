@@ -16,7 +16,7 @@ class TestController extends Controller
         $dc->Data =$data;
 
         $data = (new RemoteModelCall())->run($dc);
-        dump($data);
+//        dump($data);
         dump($data->getData());
         dump(json_encode($data->getData()));
 
@@ -98,7 +98,6 @@ class TestController extends Controller
         $response = curl_exec($ch);
 
         var_dump($response);
-
 
 
     }
