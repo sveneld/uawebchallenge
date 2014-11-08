@@ -6,14 +6,11 @@
  * Time: 16:36
  */
 
-class PaymentMethod extends BaseValidator {
-
-    public function getList($data){
-        if ($this->validate()){
-            $this->Model->getList($data);
-        } else {
-            //TODO:Обрабатываем ошибки из валидатора.
-        }
+class PaymentMethod extends BaseValidator
+{
+    public function getList($data)
+    {
+        $this->Model->getList($data);
     }
 
 } 

@@ -23,6 +23,26 @@ class TestController extends Controller
 
     public function actionChen()
     {
+        $dc = new DataContainer();
+        $dc->Key = 'somekey';
+        $dc->Class = 'PaymentMethod';
+        $dc->Method = 'getList';
+
+        $data = new stdClass();
+        $data->CategoryId = 1;
+        $data->ManufacturerId = 2;
+
+        $dc->Data =$data;
+
+//        $rmc = new RemoteModelCall($dc);
+//        var_dump($rmc->getData());
+//        var_dump($rmc);
+
+        $t = new RemoteModelCall();
+        dump($t->run($dc));
+
+
+
 
         $m = new ShippingMethod();
         $m->getList();
