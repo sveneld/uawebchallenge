@@ -54,4 +54,10 @@ class TestController extends Controller
 
     }
 
+    public function actionV(){
+        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
+        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
+        dump($res);
+    }
+
 }
