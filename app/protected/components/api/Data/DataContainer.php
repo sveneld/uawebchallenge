@@ -7,11 +7,11 @@
 
 class DataContainer
 {
-    public $key;
-    public $id;
-    public $method;
-    public $class;
-    public $data;
+    public $Key;
+    public $Id;
+    public $Method;
+    public $Class;
+    public $Data;
 
 
 } 

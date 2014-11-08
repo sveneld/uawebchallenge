@@ -20,6 +20,9 @@ return array(
 		'application.components.api.*',
 		'application.components.api.Data.*',
 		'application.components.api.Serialize.*',
+		'application.components.api.Base.*',
+		'application.components.api.Models.*',
+		'application.components.api.Validators.*',
 	),
 
 	'modules'=>array(

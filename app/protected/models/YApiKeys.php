@@ -8,7 +8,7 @@
  * @property integer $Enabled
  * @property string $ValidUntil
  */
-class ApiKeys extends CActiveRecord
+class YApiKeys extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
