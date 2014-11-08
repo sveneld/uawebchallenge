@@ -8,7 +8,7 @@ class RemoteModelCall extends DataContainerResponse {
         if (empty($DataContainer->Key)){
             return $this->addError('Key cannot by empty!');
         }
-        $ApiKeys = YApiKeys::model()->cache(3600)->findByPk($DataContainer->Key);
+        $ApiKeys = YApiKey::model()->cache(3600)->findByPk($DataContainer->Key);
         if (!$ApiKeys){
             $this->addError('Key not found!');
             return $this->getData();
@@ -38,12 +38,6 @@ class RemoteModelCall extends DataContainerResponse {
             return $this->getData();
         }
 
-
-//        $classExists = class_exists($DataContainer->Class);
-//        //TODO: Отстреливает трай кетч Yii, подумать как завернуть такую проверку. Поменять на проверку наличия одноименного файла в валидаторе
-//        if (!$classExists){
-//            return $this->addError('Remote class not found!');
-//        }
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
             $t = $Model->{$DataContainer->Method}($DataContainer->Data);
