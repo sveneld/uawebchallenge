@@ -18,7 +18,6 @@ class PaymentMethodModel extends DataContainerResponse
             $row->AdditionalParam = $item->AdditionalParam;
             $this->addData($row);
         }
-        dump($this);
         return $this;
     }
 
