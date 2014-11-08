@@ -83,21 +83,43 @@ class OrderModel extends DataContainerResponse
         return $this;
     }
 
-    public function get()
+    public function get($data)
+    {
+        $order = YOrder::model()->findByPK($data->IdOrder);
+        $data = new stdClass();
+        $data->IdOrder = $order->Id;
+        $data->FullName = $order->FullName;
+        $data->Phone = $order->Phone;
+        $data->PhoneAdditional = $order->PhoneAdditional;
+        $data->Country = $order->Country;
+        $data->City = $order->City;
+        $data->Address = $order->Address;
+        $data->AddressAdditional = $order->AddressAdditional;
+        $data->SubTotal = $order->SubTotal;
+        $data->ShippingTotal = $order->ShippingTotal;
+        $data->PaymantTotal = $order->PaymantTotal;
+        $data->Discount = $order->Discount;
+        $data->Fee = $order->Fee;
+        $data->Total = $order->Total;
+        $data->ShippingMethodName = $order->ShippingMethodName;
+        $data->IdShippingMethod = $order->IdShippingMethod;
+        $data->PaymentMethodName = $order->PaymentMethodName;
+        $data->IdPaymentMethod = $order->IdPaymentMethod;
+        $data->IdOrderStatus = $order->IdOrderStatus;
+        $data->ApiKey = $order->ApiKey;
+
+        $this->addData($data);
+        return $this;
+    }
+
+    public function getList($data)
     {
         $data = new stdClass();
         $data->SomeVal = 'coool555';
         $this->addData($data);
     }
 
-    public function getList()
-    {
-        $data = new stdClass();
-        $data->SomeVal = 'coool555';
-        $this->addData($data);
-    }
-
-    public function getStatus()
+    public function getStatus($data)
     {
         $data = new stdClass();
         $data->SomeVal = 'coool555';
