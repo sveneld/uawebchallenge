@@ -7,8 +7,9 @@ class DataContainerResponse{
     public function addData(){
 
     }
-    public function addError(){
-
+    public function addError($Error){
+        $this->_Errors[] = $Error;
+        return $this->getReponse();
     }
     public function getReponse(){
         if (!empty($this->_Errors)){
