@@ -10,19 +10,23 @@ class RemoteModelCall extends DataContainerResponse {
         }
         $ApiKeys = YApiKeys::model()->cache(3600)->findByPk($DataContainer->Key);
         if (!$ApiKeys){
-            return $this->addError('Key not found!');
+            $this->addError('Key not found!');
+            return $this->getData();
         }
         if ($ApiKeys->Enabled == 0){
-            return $this->addError('Key is disabled!');
+            $this->addError('Key is disabled!');
+            return $this->getData();
         }
         if (strtotime($ApiKeys->ValidUntil) < time()){
-            return $this->addError('Key is expired!');
+            $this->addError('Key is expired!');
+            return $this->getData();
         }
         self::$ApiKey = $ApiKeys->Key;
 
         //Class validation
         if (empty($DataContainer->Class)){
-            return $this->addError('Remote class cannot by empty!');
+            $this->addError('Remote class cannot by empty!');
+            return $this->getData();
         }
 
         try{
@@ -30,7 +34,8 @@ class RemoteModelCall extends DataContainerResponse {
                 throw new ApiException('Remote class not found!');
             }
         }catch (ApiException $e){
-            return $this->addError($e->getMessage());
+            $this->addError($e->getMessage());
+            return $this->getData();
         }
 
 
@@ -41,9 +46,13 @@ class RemoteModelCall extends DataContainerResponse {
 //        }
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
+            $t = $Model->{$DataContainer->Method}($DataContainer->Data);
+            return $this->getData();
+            dump($Model->{$DataContainer->Method}($DataContainer->Data));
             return $Model->{$DataContainer->Method}($DataContainer->Data);
         } else {
-            return $this->addError('Method of class '.$DataContainer->Class.' not found!');
+            $this->addError('Method of class '.$DataContainer->Class.' not found!');
+            return $this->getData();
         }
 
     }

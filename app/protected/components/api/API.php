@@ -11,6 +11,10 @@ class API
             $getContainers = $serializerName::unserializeData($data);
 
             foreach($getContainers->getContainers() as $dataContainer){
+
+//                dump('API Call');
+//                dump((new RemoteModelCall())->run($dataContainer));
+
                 $dataContainer->setResult((new RemoteModelCall())->run($dataContainer));
             }
 

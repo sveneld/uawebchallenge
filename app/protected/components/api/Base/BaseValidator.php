@@ -11,10 +11,6 @@ class BaseValidator extends RemoteModelCall {
         $modelName = get_class($this).'Model';
         $this->Model = new $modelName();
     }
-    //Example
-    public function validateInt($value){
-
-    }
 
     public function validate(&$data){
         $success = true;
@@ -45,5 +41,12 @@ class BaseValidator extends RemoteModelCall {
         return true;
     }
 
+    public function validateInt($value){
+        return is_numeric($value);
+    }
+
+    public function notEmpty($value){
+        return !empty($value);
+    }
 
 }

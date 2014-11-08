@@ -17,6 +17,14 @@ class Order extends BaseValidator {
     }
 
     public function add($data){
+        $this->ValidationMap = array(
+            'CategoryIdValidator' => 'CategoryId',
+//            'ManufacturerValidator' => 'ManufacturerId',
+        );
+        $this->ValidationMapUnnesessaryFields = array(
+//            'CategoryIdValidator' => 'CategoryId',
+            'ManufacturerValidator' => 'ManufacturerId',
+        );
         if ($this->validate($data)){
             $this->Model->addOrder($data);
         } else {
@@ -44,7 +52,7 @@ class Order extends BaseValidator {
     }
 
     protected  function validateIdOrder($id){
-        return is_numeric($id);
+        return $this->validateInt($id);
     }
 
 } 
