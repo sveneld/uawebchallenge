@@ -1,12 +1,8 @@
 <?php
-class RemoteModelCall extends DataContainerResponse{
-    private $Class = null;
-    private $Method = null;
-    private $Key = null;
-//    private $ACL = null;  //
+class RemoteModelCall extends DataContainerResponse {
 
+    public function Run(DataContainer $DataContainer){
 
-    function __construct(DataContainer $DataContainer){
         //Key validation
         if (empty($DataContainer->Key)){
             return $this->addError('Key cannot by empty!');
@@ -21,6 +17,7 @@ class RemoteModelCall extends DataContainerResponse{
         if (strtotime($ApiKeys->ValidUntil) < time()){
             return $this->addError('Key is expired!');
         }
+
         //Class validation
         if (empty($DataContainer->Class)){
             return $this->addError('Remote class cannot by empty!');
@@ -33,15 +30,11 @@ class RemoteModelCall extends DataContainerResponse{
         }
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
-            var_dump( $Model->{$DataContainer->Method}($DataContainer->Data));
             return $Model->{$DataContainer->Method}($DataContainer->Data);
-//            var_dump('$response');
-//            var_dump($response);
         } else {
-            var_dump('ACHTUNG!');
+            return $this->addError('Method of class '.$DataContainer->Class.' not found!');
         }
 
-//        var_dump('itsok!');
     }
 
 
