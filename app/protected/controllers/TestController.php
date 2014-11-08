@@ -103,17 +103,11 @@ class TestController extends Controller
         $data = new stdClass();
         $dc->Data =$data;
 
-//        $rmc = new RemoteModelCall($dc);
-//        var_dump($rmc->getData());
-//        var_dump($rmc);
+        $data = (new RemoteModelCall())->run($dc);
+        dump($data);
+        dump($data->getData());
+        dump(json_encode($data->getData()));
 
-        $t = new RemoteModelCall();
-        $t->run($dc);
-        dump($t->getData());
-
-//        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
-//        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
-//        dump($res);
     }
 
 }
