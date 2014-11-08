@@ -95,9 +95,25 @@ class TestController extends Controller
     }
 
     public function actionV(){
-        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
-        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
-        dump($res);
+        $dc = new DataContainer();
+        $dc->Key = 'somekey';
+        $dc->Class = 'ProductCategory';
+        $dc->Method = 'getList';
+
+        $data = new stdClass();
+        $dc->Data =$data;
+
+//        $rmc = new RemoteModelCall($dc);
+//        var_dump($rmc->getData());
+//        var_dump($rmc);
+
+        $t = new RemoteModelCall();
+        $t->run($dc);
+        dump($t->getData());
+
+//        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
+//        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
+//        dump($res);
     }
 
 }

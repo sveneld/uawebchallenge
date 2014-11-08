@@ -9,7 +9,10 @@
 class ProductCategory extends BaseValidator {
 
     public function getList($data){
-        if ($this->validate()){
+        $this->ValidationMap = array(
+
+        );
+        if ($this->validate($data)){
             $this->Model->getList($data);
         } else {
             //TODO:Обрабатываем ошибки из валидатора.
