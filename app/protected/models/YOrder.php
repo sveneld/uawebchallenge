@@ -14,7 +14,7 @@
  * @property string $AddressAdditional
  * @property string $SubTotal
  * @property string $ShippingTotal
- * @property string $PaymantTotal
+ * @property string $PaymentTotal
  * @property string $Discount
  * @property string $Fee
  * @property string $Total
@@ -49,11 +49,11 @@ class YOrder extends CActiveRecord
 			array('FullName, Address, AddressAdditional, ShippingMethodName, PaymentMethodName', 'length', 'max'=>255),
 			array('Phone, PhoneAdditional, Country, City', 'length', 'max'=>45),
 			array('ApiKey', 'length', 'max'=>32),
-			array('SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total', 'length', 'max'=>15),
+			array('SubTotal, ShippingTotal, PaymentTotal, Discount, Fee, Total', 'length', 'max'=>15),
 			array('IdShippingMethod, IdPaymentMethod, IdOrderStatus', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total, ShippingMethodName, IdShippingMethod, PaymentMethodName, IdPaymentMethod, IdOrderStatus,  ApiKey, IdAffiliate', 'safe', 'on'=>'search'),
+			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymentTotal, Discount, Fee, Total, ShippingMethodName, IdShippingMethod, PaymentMethodName, IdPaymentMethod, IdOrderStatus,  ApiKey, IdAffiliate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,7 +88,7 @@ class YOrder extends CActiveRecord
 			'AddressAdditional' => 'Address Additional',
 			'SubTotal' => 'Sub Total',
 			'ShippingTotal' => 'Shipping Total',
-			'PaymantTotal' => 'Paymant Total',
+			'PaymentTotal' => 'Payment Total',
 			'Discount' => 'Discount',
 			'Fee' => 'Fee',
 			'Total' => 'Total',
@@ -130,7 +130,7 @@ class YOrder extends CActiveRecord
 		$criteria->compare('AddressAdditional',$this->AddressAdditional,true);
 		$criteria->compare('SubTotal',$this->SubTotal,true);
 		$criteria->compare('ShippingTotal',$this->ShippingTotal,true);
-		$criteria->compare('PaymantTotal',$this->PaymantTotal,true);
+		$criteria->compare('PaymentTotal',$this->PaymentTotal,true);
 		$criteria->compare('Discount',$this->Discount,true);
 		$criteria->compare('Fee',$this->Fee,true);
 		$criteria->compare('Total',$this->Total,true);

@@ -12,7 +12,38 @@ class TestController extends Controller
         $data = new stdClass();
 //        $data->CategoryId = 1;
 //        $data->ManufacturerId2 = 2;
-        $data->IdOrde2r = 2;
+        $data->FullName = 2;
+        $data->Phone = 2;
+        $data->Country = 2;
+        $data->City = 2;
+        $data->Address = 2;
+        $data->IdShippingMethod = 2;
+        $data->IdPaymentMethod = 2;
+        $data->Discount = 2;
+        $data->Fee = 2;
+        $data->Total = 2;
+
+        $data->PhoneAdditional = null;
+
+        $data->Products = array();
+
+        $t = new stdClass();
+        $t->Sku = 'FB291';
+        $t->Quantity = 2;
+        $t->Price = 500;
+        $data->Products[] = $t;
+
+        $t = new stdClass();
+        $t->Sku = 'FB293';
+        $t->Quantity = 1;
+        $t->Price = 156.29;
+        $data->Products[] = $t;
+
+//        $data->IdPaymentMethod = 2;
+//        $data->IdPaymentMethod = 2;
+//        $data->IdPaymentMethod = 2;
+//        $data->IdPaymentMethod = 2;
+//        $data->IdPaymentMethod = 2;
 
         $dc->Data =$data;
 

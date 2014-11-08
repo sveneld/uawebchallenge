@@ -30,13 +30,18 @@ class Order extends BaseValidator {
             'Discount' => 'validateFloat',
             'Fee' => 'validateFloat',
             'Total' => 'validateFloat',
+            'Products' => array(
+                'Sku'=>'validateProductSku',
+                'Quantity'=>'validateInt',
+                'Price'=>'validateFloat',
+            )
         );
         $this->ValidationMapUnnesessaryFields = array(
-            'PhoneAdditional' => 'string',
-            'AddressAdditional' => 'string',
+            'PhoneAdditional' => 'validateString',
+            'AddressAdditional' => 'validateString',
         );
         if ($this->validate($data)){
-            return $this->Model->addOrder($data);
+            return $this->Model->add($data);
         } else {
             return $this;
         }

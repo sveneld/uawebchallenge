@@ -14,18 +14,20 @@ class OrderModel extends DataContainerResponse
         $order = new YOrder();
         $order->FullName = $data->FullName;
         $order->Phone = $data->Phone;
-        $order->PhoneAdditional = $data->PhoneAdditional;
+        $order->PhoneAdditional = !empty($data->PhoneAdditional) ? $data->PhoneAdditional : null;
         $order->Country = $data->Country;
         $order->City = $data->City;
         $order->Address = $data->Address;
-        $order->AddressAdditional = $data->AddressAdditional;
+        $order->AddressAdditional = !empty($data->AddressAdditional) ? $data->AddressAdditional : null;
 
         $criteria = new CDbCriteria();
         $products = array();
         foreach ($data->Products as $product) {
             $products[] = $product->Sku;
         }
-        $products = $criteria->addInCondition('Sku', $products);
+        $criteria->addInCondition('Sku', $products);
+        $products = YProduct::model()->findAll($criteria);
+//        dump($products,1);
         $groupedProducts = array();
         foreach ($products as $product) {
             $groupedProducts[$product->Sku] = $product;
@@ -115,7 +117,7 @@ class OrderModel extends DataContainerResponse
         $data->AddressAdditional = $order->AddressAdditional;
         $data->SubTotal = $order->SubTotal;
         $data->ShippingTotal = $order->ShippingTotal;
-        $data->PaymantTotal = $order->PaymantTotal;
+        $data->PaymentTotal = $order->PaymentTotal;
         $data->Discount = $order->Discount;
         $data->Fee = $order->Fee;
         $data->Total = $order->Total;
@@ -157,7 +159,7 @@ class OrderModel extends DataContainerResponse
             $data->AddressAdditional = $order->AddressAdditional;
             $data->SubTotal = $order->SubTotal;
             $data->ShippingTotal = $order->ShippingTotal;
-            $data->PaymantTotal = $order->PaymantTotal;
+            $data->PaymentTotal = $order->PaymentTotal;
             $data->Discount = $order->Discount;
             $data->Fee = $order->Fee;
             $data->Total = $order->Total;
