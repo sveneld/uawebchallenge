@@ -11,13 +11,14 @@ class TestController extends Controller
 
         $data = new stdClass();
         $data->CategoryId = 1;
-        $data->ManufacturerId = 2;
+        $data->ManufacturerId2 = 2;
 
         $dc->Data =$data;
 
         $data = (new RemoteModelCall())->run($dc);
         dump($data);
         dump($data->getData());
+        dump(json_encode($data->getData()));
 
     }
 

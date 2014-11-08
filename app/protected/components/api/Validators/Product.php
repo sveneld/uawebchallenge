@@ -7,8 +7,10 @@ class Product extends BaseValidator {
             'ManufacturerValidator' => 'ManufacturerId',
         );
         if ($this->validate($data)){
+            dump('$this->validate successs');
             return $this->Model->getList($data);
         } else {
+            dump('$this->validate fail');
             //TODO:Обрабатываем ошибки из валидатора. /// Вовзращаем экземпляр валидатора, который есть тоже DataContainerReponse и содержит свои ошибки
             return $this;
         }
