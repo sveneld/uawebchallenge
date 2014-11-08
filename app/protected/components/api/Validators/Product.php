@@ -4,19 +4,26 @@ class Product extends BaseValidator {
     public function getList($data){
         $this->ValidationMap = array(
             'CategoryIdValidator' => 'CategoryId',
-            'ManufacturerValidator' => 'ManufacturerValidator',
+            'ManufacturerValidator' => 'ManufacturerId',
         );
-        if ($this->validate()){
-            $this->Model->getList($data);
+        if ($this->validate($data)){
+            return $this->Model->getList($data);
         } else {
-            //TODO:Обрабатываем ошибки из валидатора.
+            //TODO:Обрабатываем ошибки из валидатора. /// Вовзращаем экземпляр валидатора, который есть тоже DataContainerReponse и содержит свои ошибки
+            return $this;
         }
     }
 
     protected function CategoryIdValidator($value){
-        return true;
+        if (is_numeric($value)){
+            return true;
+        }
+        return false;
     }
     protected function ManufacturerValidator($value){
-        return true;
+        var_dump('ManufacturerValidator');
+        $this->addError('ManufacturerValidator error');
+        return false;
+//        return true;
     }
 }

@@ -3,7 +3,7 @@ class RemoteModelCall extends DataContainerResponse{
     private $Class = null;
     private $Method = null;
     private $Key = null;
-    private $ACL = null;
+//    private $ACL = null;  //
 
 
     function __construct(DataContainer $DataContainer){
@@ -33,12 +33,15 @@ class RemoteModelCall extends DataContainerResponse{
         }
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
-            $response = $Model->{$DataContainer->Method}($DataContainer->Data);
-            var_dump('$response');
-            var_dump($response);
+            var_dump( $Model->{$DataContainer->Method}($DataContainer->Data));
+            return $Model->{$DataContainer->Method}($DataContainer->Data);
+//            var_dump('$response');
+//            var_dump($response);
+        } else {
+            var_dump('ACHTUNG!');
         }
 
-        var_dump('itsok!');
+//        var_dump('itsok!');
     }
 
 

@@ -1,5 +1,5 @@
 <?php
-class BaseValidator {
+class BaseValidator extends RemoteModelCall {
     protected $ValidationMap = array();
     protected $ValidationMapResult = array();
     protected $Model = null;
@@ -7,9 +7,9 @@ class BaseValidator {
 
     //Example
     function __construct(){
-        var_dump('get_class()');
-        var_dump(get_class());
-        var_dump(get_class($this));
+//        var_dump('get_class()');
+//        var_dump(get_class());
+//        var_dump(get_class($this));
         $modelName = get_class($this).'Model';
         $this->Model = new $modelName();
     }
@@ -18,10 +18,10 @@ class BaseValidator {
 
     }
 
-    public function validate(){
+    public function validate(&$data){
         $success = true;
         foreach($this->ValidationMap as $ValidationMethodName=>$DataFiledName){
-            $DataFieldValidationResult = $this->$ValidationMethodName(isset($this->Data->$DataFiledName) ? $this->Data->$DataFiledName : null);
+            $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
             if (!$DataFieldValidationResult) {
                 $success = false;
             }

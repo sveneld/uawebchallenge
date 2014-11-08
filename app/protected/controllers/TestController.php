@@ -10,12 +10,13 @@ class TestController extends Controller
         $dc->Method = 'getList';
 
         $data = new stdClass();
-        $data->key1 = 1;
-        $data->key2 = 2;
+        $data->CategoryId = 1;
+        $data->ManufacturerId = 2;
 
         $dc->Data =$data;
 
         $rmc = new RemoteModelCall($dc);
+        var_dump($rmc->getData());
         var_dump($rmc);
 
     }
