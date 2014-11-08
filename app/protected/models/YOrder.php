@@ -19,9 +19,9 @@
  * @property string $Fee
  * @property string $Total
  * @property string $ShippingMethodName
- * @property string $ShippingMethodId
+ * @property string $IdShippingMethod
  * @property string $PaymentMethodName
- * @property string $PaymentMethodId
+ * @property string $IdPaymentMethod
  * @property string $IdOrderStatus
  */
 class YOrder extends CActiveRecord
@@ -47,10 +47,10 @@ class YOrder extends CActiveRecord
 			array('FullName, Address, AddressAdditional, ShippingMethodName, PaymentMethodName', 'length', 'max'=>255),
 			array('Phone, PhoneAdditional, Country, City', 'length', 'max'=>45),
 			array('SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total', 'length', 'max'=>15),
-			array('ShippingMethodId, PaymentMethodId, IdOrderStatus', 'length', 'max'=>10),
+			array('IdShippingMethod, IdPaymentMethod, IdOrderStatus', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total, ShippingMethodName, ShippingMethodId, PaymentMethodName, PaymentMethodId, IdOrderStatus', 'safe', 'on'=>'search'),
+			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymantTotal, Discount, Fee, Total, ShippingMethodName, IdShippingMethod, PaymentMethodName, IdPaymentMethod, IdOrderStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,10 @@ class YOrder extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'ShippingMethod' => array(self::HAS_ONE, 'YShippingMethod', array('IdShippingMethod' => 'Id')),
+            'PaymentMethod' => array(self::HAS_ONE, 'YPaymentMethod', array('IdPaymentMethod' => 'Id')),
+            'OrderStatus' => array(self::HAS_ONE, 'YOrderStatus', array('IdOrderStatus' => 'Id')),
+            'Product' => array(self::HAS_MANY, 'YOrderProduct', array('Id' => 'IdOrder')),
 		);
 	}
 
@@ -86,9 +90,9 @@ class YOrder extends CActiveRecord
 			'Fee' => 'Fee',
 			'Total' => 'Total',
 			'ShippingMethodName' => 'Shipping Method Name',
-			'ShippingMethodId' => 'Shipping Method',
+			'IdShippingMethod' => 'Shipping Method',
 			'PaymentMethodName' => 'Payment Method Name',
-			'PaymentMethodId' => 'Payment Method',
+			'IdPaymentMethod' => 'Payment Method',
 			'IdOrderStatus' => 'Id Order Status',
 		);
 	}
@@ -126,9 +130,9 @@ class YOrder extends CActiveRecord
 		$criteria->compare('Fee',$this->Fee,true);
 		$criteria->compare('Total',$this->Total,true);
 		$criteria->compare('ShippingMethodName',$this->ShippingMethodName,true);
-		$criteria->compare('ShippingMethodId',$this->ShippingMethodId,true);
+		$criteria->compare('IdShippingMethod',$this->IdShippingMethod,true);
 		$criteria->compare('PaymentMethodName',$this->PaymentMethodName,true);
-		$criteria->compare('PaymentMethodId',$this->PaymentMethodId,true);
+		$criteria->compare('IdPaymentMethod',$this->IdPaymentMethod,true);
 		$criteria->compare('IdOrderStatus',$this->IdOrderStatus,true);
 
 		return new CActiveDataProvider($this, array(
