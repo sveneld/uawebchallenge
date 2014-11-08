@@ -195,8 +195,8 @@ class TestController extends Controller
         dump(md5('магазин 1'));
         dump(md5('магазин 2'));
         $dc = new DataContainer();
-        $dc->Key = 'somekey';
-        $dc->Class = 'ShippingMethod';
+        $dc->Key = 'd833382472255f830cf09f728a49c91b';
+        $dc->Class = 'Product';
         $dc->Method = 'getList';
 
         $data = new stdClass();
