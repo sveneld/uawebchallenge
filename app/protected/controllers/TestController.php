@@ -10,8 +10,8 @@ class TestController extends Controller
         $dc->Method = 'getList';
 
         $data = new stdClass();
-        $data->CategoryId = '1';
-        $data->ManufacturerId = '2';
+        $data->CategoryId = 1;
+        $data->ManufacturerId2 = 2;
 
         $dc->Data =$data;
 
@@ -51,6 +51,14 @@ class TestController extends Controller
 
 
         die;
+
+
+
+
+    }
+
+    public function actionChen2()
+    {
 
         $data = array();
 
@@ -103,23 +111,11 @@ class TestController extends Controller
         $data = new stdClass();
         $dc->Data =$data;
 
-//        $rmc = new RemoteModelCall($dc);
-//        var_dump($rmc->getData());
-//        var_dump($rmc);
-
-        $t = new RemoteModelCall();
-        $t->run($dc);
-        dump($t->getData());
-
         $data = (new RemoteModelCall())->run($dc);
         dump($data);
         dump($data->getData());
         dump(json_encode($data->getData()));
 
-
-//        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
-//        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
-//        dump($res);
     }
 
 }

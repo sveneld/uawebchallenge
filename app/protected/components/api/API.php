@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chen
- * Date: 01.11.2014
- * Time: 12:12
- */
 
 class API
 {
@@ -12,14 +6,16 @@ class API
     {
         try{
             $serializerName = 'Serialize' . mb_strtoupper($format);
-            if(!class_exists($serializerName,true))
+            if(!class_exists($serializerName))
                 throw new CException("No format {$format}");
             $response = $serializerName::unserializeData($data);
 
+            foreach($response->getContainers() as $dataContainer){
 
-            dump($response);
 
+            }
 
+            die;
 
 
 

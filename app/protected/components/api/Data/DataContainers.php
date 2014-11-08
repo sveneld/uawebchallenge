@@ -1,24 +1,27 @@
 <?php
-/**
- * User: maksymenko.ml
- * Date: 08.11.2014
- * Time: 12:42
- */
 
 class DataContainers
 {
-    private $DataContainers = array();
-    public $Batch = false;
+    private $dataContainers = array();
+    private $batch = false;
 
-    public function add(DataContainer $dataContainer)
+    public function addContainer(DataContainer $dataContainer)
     {
-        $this->DataContainers[] = $dataContainer;
+        $this->dataContainers[] = $dataContainer;
     }
 
-    public function get()
+    public function getContainers()
     {
-        return $this->DataContainers;
+        return $this->dataContainers;
     }
 
+    public function isBatch()
+    {
+        $this->batch = true;
+    }
 
-} 
+    public function getBatch()
+    {
+        return $this->batch;
+    }
+}
