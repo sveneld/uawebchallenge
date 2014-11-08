@@ -7,7 +7,7 @@ class API
         try{
             $serializerName = 'Serialize' . mb_strtoupper($format);
             if(!class_exists($serializerName)){
-                throw new CException("No format {$format}");
+                throw new ApiException("No format {$format}");
             }
             $getContainers = $serializerName::unserializeData($data);
 
