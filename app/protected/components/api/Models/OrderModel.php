@@ -97,8 +97,8 @@ class OrderModel extends DataContainerResponse
         $criteria = new CDbCriteria();
         $criteria->addCondition('Id', $data->IdOrder);
         $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
-        $criteria->with(array('Product'));
-        $order = YOrder::model()->find($criteria);
+//        $criteria->with(array('YProduct'));
+        $order = YOrder::model()->with(array('YProduct'))->find($criteria);
         if (empty($order)){
             return $this->addError('No such order');
         }

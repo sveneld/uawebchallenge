@@ -17,9 +17,9 @@ class TestController extends Controller
         $dc->Data =$data;
 
         $data = (new RemoteModelCall())->run($dc);
-//        dump($data);
-        dump($data->getData());
-        dump(json_encode($data->getData()));
+        dump($data);
+//        dump($data->getData());
+//        dump(json_encode($data->getData()));
 
     }
 
@@ -115,8 +115,8 @@ class TestController extends Controller
 
         $data = (new RemoteModelCall())->run($dc);
         dump($data);
-        dump($data->getData());
-        dump(json_encode($data->getData()));
+//        dump($data->getData());
+//        dump(json_encode($data->getData()));
 
     }
 

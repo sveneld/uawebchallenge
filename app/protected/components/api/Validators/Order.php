@@ -18,12 +18,23 @@ class Order extends BaseValidator {
 
     public function add($data){
         $this->ValidationMap = array(
-            'CategoryIdValidator' => 'CategoryId',
-//            'ManufacturerValidator' => 'ManufacturerId',
+            'FullName' => 'notEmpty',
+            'Phone' => 'notEmpty',
+            'Country' => 'notEmpty',
+            'City' => 'notEmpty',
+            'Address' => 'notEmpty',
+            'IdShippingMethod' => 'validateInt',
+            'IdPaymentMethod' => 'validateInt',
+            'Discount' => 'validateFloat',
+            'Fee' => 'validateFloat',
+            'Total' => 'validateFloat',
+            'PaymentMethodName' => 'validateFloat',
+//            'notEmpty' => 'Address',
+//            'notEmpty' => 'Address',
         );
         $this->ValidationMapUnnesessaryFields = array(
-//            'CategoryIdValidator' => 'CategoryId',
-            'ManufacturerValidator' => 'ManufacturerId',
+            'PhoneAdditional' => 'string',
+            'AddressAdditional' => 'string',
         );
         if ($this->validate($data)){
             $this->Model->addOrder($data);
@@ -34,7 +45,7 @@ class Order extends BaseValidator {
 
     public function get($data){
         $this->ValidationMap = array(
-            'validateIdOrder' => 'IdOrder',
+            'IdOrder' => 'validateInt',
         );
         if ($this->validate($data)){
             $this->Model->get($data);
