@@ -55,37 +55,52 @@ class OrderModel extends DataContainerResponse
         $order->IdPaymentMethod = $data->IdPaymentMethod;
         $order->IdOrderStatus = 1;
 
-        if (!$order->save()) {
-            return $this->addError('Fatal error 001');
-        }
-
-        foreach ($data->Products as $product) {
-            $orderProduct = new YOrderProduct();
-            $orderProduct->IdOrder = $order->Id;
-            $orderProduct->IdProduct = $groupedProducts[$product->Sku]->Id;
-            $orderProduct->Sku = $product->Sku;
-            $orderProduct->Name = $groupedProducts[$product->Sku]->Name;
-            $orderProduct->Price = $product->Price;
-            $orderProduct->Quantity = $product->Quantity;
-            $orderProduct->IncomingPrice = $groupedProducts[$product->Sku]->IncomingPrice;
-            $orderProduct->IncomingCurrency = $groupedProducts[$product->Sku]->IncomingCurrency;
-            $orderProduct->IncomingCurrencyRate = $groupedProducts[$product->Sku]->IncomingCurrencyRate;
+        try {
+            Database::beginTransaction();
 
             if (!$order->save()) {
-                return $this->addError('Fatal error 002');
+                return $this->addError('Fatal error 001');
             }
 
+            foreach ($data->Products as $product) {
+                $orderProduct = new YOrderProduct();
+                $orderProduct->IdOrder = $order->Id;
+                $orderProduct->IdProduct = $groupedProducts[$product->Sku]->Id;
+                $orderProduct->Sku = $product->Sku;
+                $orderProduct->Name = $groupedProducts[$product->Sku]->Name;
+                $orderProduct->Price = $product->Price;
+                $orderProduct->Quantity = $product->Quantity;
+                $orderProduct->IncomingPrice = $groupedProducts[$product->Sku]->IncomingPrice;
+                $orderProduct->IncomingCurrency = $groupedProducts[$product->Sku]->IncomingCurrency;
+                $orderProduct->IncomingCurrencyRate = $groupedProducts[$product->Sku]->IncomingCurrencyRate;
+
+                if (!$order->save()) {
+                    return $this->addError('Fatal error 002');
+                }
+
+            }
+            Database::commitTransaction();
+            TransactionFactory::commit();
+        } catch (Exception $e) {
+            TransactionFactory::rollback();
+            return $this->addError('Fatal error 003');
         }
 
         $data = new stdClass();
-        $data->IdOrder = $order->Id;;
+        $data->IdOrder = $order->Id;
         $this->addData($data);
         return $this;
     }
 
     public function get($data)
     {
-        $order = YOrder::model()->findByPK($data->IdOrder);
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('Id', $data->IdOrder);
+        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $order = YOrder::model()->find($criteria);
+        if (empty($order)){
+            return $this->addError('No such order');
+        }
         $data = new stdClass();
         $data->IdOrder = $order->Id;
         $data->FullName = $order->FullName;
@@ -121,9 +136,24 @@ class OrderModel extends DataContainerResponse
 
     public function getStatus($data)
     {
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('Id', $data->IdOrder);
+        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $criteria->select('IdOrderStatus');
+        $criteria->with(array('OrderStatus' => array('select' => 'Name')));
+        $order = YOrder::model()->find($criteria);
+
+        if (empty($order)){
+            return $this->addError('No such order');
+        }
+
         $data = new stdClass();
-        $data->SomeVal = 'coool555';
+        $data->IdOrder = $order->Id;
+        $data->IdOrderStatus = $order->IdOrderStatus;
+        $data->OrderStatusName = !empty($order->OrderStatus->Name) ? $order->OrderStatus->Name : '';
+
         $this->addData($data);
+        return $this;
     }
 
 } 
