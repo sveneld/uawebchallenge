@@ -22,6 +22,25 @@ class TestController extends Controller
 //        dump(json_encode($data->getData()));
 
     }
+    public function actionTest2(){
+        $dc = new DataContainer();
+        $dc->Key = 'somekey';
+        $dc->Class = 'Order';
+        $dc->Method = 'get';
+
+        $data = new stdClass();
+//        $data->CategoryId = 1;
+//        $data->ManufacturerId2 = 2;
+        $data->IdOrder = 2;
+
+        $dc->Data =$data;
+
+        $data = (new RemoteModelCall())->run($dc);
+        dump($data);
+//        dump($data->getData());
+//        dump(json_encode($data->getData()));
+
+    }
 
     public function actionChen()
     {

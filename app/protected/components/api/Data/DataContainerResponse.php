@@ -15,9 +15,10 @@ class DataContainerResponse{
     }
     public function getData(){
         $this->_Response = new stdClass();
+        $this->_Response->Data = array();
+        $this->_Response->Errors = array();
         if (!empty($this->_Errors)){
             $this->_Response->Success = false;
-            $this->_Response->Errors = array();
             foreach($this->_Errors as $ErrorRow){
                 $this->_Response->Errors[] = $ErrorRow;
             }
@@ -25,7 +26,6 @@ class DataContainerResponse{
             $this->_Response->Success = true;
         }
         if (!empty($this->_Data)){
-            $this->_Response->Data = array();
             foreach($this->_Data as $DataRow){
                 //ACL for response foreach data
                 $this->_Response->Data[] = $DataRow;
