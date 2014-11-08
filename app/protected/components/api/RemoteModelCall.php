@@ -46,6 +46,7 @@ class RemoteModelCall extends DataContainerResponse {
 
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
+//            Cache::getCache($DataContainer);
             $result = call_user_func(array($Model, $DataContainer->Method), $DataContainer->Data);
             return $result->getData();
         } else {

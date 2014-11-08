@@ -120,7 +120,7 @@ class TestController extends Controller
         $model->params['data'] = array(
             'name' => 'vasya',
         );
-        $model->params['key'] = 'somekey';
+        $model->params['key'] = '03ae7344fce64b8ef0c7dc3a78fae838';
 
         $model2 = new stdClass();
         $model2->id = 5;
@@ -136,7 +136,7 @@ class TestController extends Controller
         $data[] = $model2;
 
         $data =  json_encode($data);
-        var_dump($data);
+//        var_dump($data);
         echo '<br>';
 
         $ch = curl_init();

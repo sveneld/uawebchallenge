@@ -1,6 +1,6 @@
 <?php
 
-class SerializeJSONRPC2 implements Serialize
+class SerializeJSONRPC2 implements SerializeApi
 {
     public static function serializeData($data)
     {
