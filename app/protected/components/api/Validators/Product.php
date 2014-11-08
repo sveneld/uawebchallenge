@@ -3,10 +3,10 @@ class Product extends BaseValidator {
 
     public function getList($data){
         $this->ValidationMap = array(
-            'CategoryId' => 'CategoryIdValidator',
+
         );
         $this->ValidationMapUnnesessaryFields = array(
-            'ManufacturerId' => 'ManufacturerValidator',
+            'IdCategory' => 'IdCategoryValidator',
         );
         if ($this->validate($data)){
             return $this->Model->getList($data);
@@ -16,16 +16,15 @@ class Product extends BaseValidator {
         }
     }
 
-    protected function CategoryIdValidator($value){
-        if (is_numeric($value)){
-            return true;
+    protected function IdCategoryValidator($value){
+        if (!is_numeric($value)){
+            return false;
         }
-        return false;
-    }
-    protected function ManufacturerValidator($value){
-        if (is_numeric($value)){
-            return true;
+        if (!empty(Affiliate::getAllowed()->productCategories) && !in_array($value, Affiliate::getAllowed()->productCategories)){
+            return false;
         }
-        return false;
+        return true;
+
     }
+
 }
