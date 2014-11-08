@@ -5,11 +5,7 @@ class SerializeJSONRPC2 implements Serialize
     public static function serializeData($data)
     {
         $resultArray = array();
-//        dump($data->getContainers(),1);
         foreach($data->getContainers() as $dataContainer){
-            dump($dataContainer->getResult());
-
-//            dump($dataContainer,1);
             if(!$dataContainer->Id && !empty($dataContainer->result->Errors))
                 continue;
             $jsonrpc2 = new stdClass();
@@ -23,21 +19,11 @@ class SerializeJSONRPC2 implements Serialize
                     $jsonrpc2->error['data'][] = $error;
                 }
             } else {
-                $jsonrpc2->id = $dataContainer->getResult();
-
+                $jsonrpc2->result = $dataContainer->getResult()->Data;
             }
             $resultArray[] = $jsonrpc2;
-
-
         }
-
-
-
-
-        dump($resultArray);
-
-
-
+        return json_encode($resultArray);
     }
 
     public static function unserializeData($data)
