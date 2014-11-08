@@ -8,15 +8,14 @@ class API
             $serializerName = 'Serialize' . mb_strtoupper($format);
             if(!class_exists($serializerName))
                 throw new CException("No format {$format}");
-            $response = $serializerName::unserializeData($data);
+            $getContainers = $serializerName::unserializeData($data);
 
-            foreach($response->getContainers() as $dataContainer){
-                dump((new RemoteModelCall())->run($dataContainer),1);
+            foreach($getContainers->getContainers() as $dataContainer){
                 $dataContainer->setResult((new RemoteModelCall())->run($dataContainer));
             }
 
-            dump($response,1);
-            die;
+
+            return $response = $serializerName::serializeData($getContainers);
 
 
 

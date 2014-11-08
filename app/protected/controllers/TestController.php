@@ -65,11 +65,12 @@ class TestController extends Controller
 
         $model = new stdClass();
         $model->id = 2;
-        $model->key = 555555;
-        $model->method = 'Class.method';
+        $model->method = 'ProductCategory.getList';
         $model->params = array();
-        $model->params['data'] = array('name' => 'vasya');
-        $model->params['key'] = 'fhdjfjdhfjhdfhdjfhd';
+        $model->params['data'] = array(
+            'name' => 'vasya',
+        );
+        $model->params['key'] = 'somekey';
 
         $model2 = new stdClass();
         $model2->id = 5;

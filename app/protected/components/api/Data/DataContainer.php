@@ -9,7 +9,7 @@ class DataContainer
     public $Data;
     private $result;
 
-    public function setResult(DataContainerResponse $dataContainerResponse)
+    public function setResult($dataContainerResponse)
     {
         $this->result = $dataContainerResponse;
     }
