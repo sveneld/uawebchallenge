@@ -14,14 +14,10 @@ class API
             foreach($getContainers->getContainers() as $dataContainer){
                 $dataContainer->setResult((new RemoteModelCall())->run($dataContainer));
             }
-
             return $response = $serializerName::serializeData($getContainers);
         } catch(CException $e){
             return $e->getMessage();
         }
-
-
-
     }
 
 
