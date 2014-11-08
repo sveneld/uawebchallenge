@@ -126,10 +126,11 @@ class TestController extends Controller
     public function actionV(){
         $dc = new DataContainer();
         $dc->Key = 'somekey';
-        $dc->Class = 'ProductCategory';
-        $dc->Method = 'getList';
+        $dc->Class = 'Order';
+        $dc->Method = 'get';
 
         $data = new stdClass();
+        $data->IdOrder = 'asdfasdf';
         $dc->Data =$data;
 
         $data = new RemoteModelCall();

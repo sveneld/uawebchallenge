@@ -11,8 +11,9 @@ class DataContainerResponse{
     protected function addError($Error){
         $this->_Errors[] = $Error;
         //Выбрасываемся на первой ошибке, дабы не плодить лавину. Но на будущее оставляем масивчики
-        return $this->getData();
+        return $this;
     }
+
     public function getData(){
         $this->_Response = new stdClass();
         $this->_Response->Data = array();

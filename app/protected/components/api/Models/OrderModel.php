@@ -94,10 +94,11 @@ class OrderModel extends DataContainerResponse
     public function get($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('Id', $data->IdOrder);
-        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
-//        $criteria->with(array('YProduct'));
-        $order = YOrder::model()->with(array('YProduct'))->find($criteria);
+        $criteria->addCondition('Id = :IdOrder');
+        $criteria->params[':IdOrder'] = $data->IdOrder;
+        $criteria->addCondition('ApiKey = :ApiKey');
+        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
+        $order = YOrder::model()->find($criteria);
         if (empty($order)){
             return $this->addError('No such order');
         }
@@ -138,8 +139,9 @@ class OrderModel extends DataContainerResponse
     public function getList($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
-        $criteria->with(array('Product'));
+        $criteria->addCondition('ApiKey = :ApiKey');
+        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
+        $criteria->with = array('Product');
         $orders = YOrder::model()->findAll($criteria);
         foreach ($orders as $order){
             $data = new stdClass();
@@ -179,10 +181,12 @@ class OrderModel extends DataContainerResponse
     public function getStatus($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('Id', $data->IdOrder);
-        $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $criteria->addCondition('Id = :IdOrder');
+        $criteria->params[':IdOrder'] = $data->IdOrder;
+        $criteria->addCondition('ApiKey = :ApiKey');
+        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
         $criteria->select('IdOrderStatus');
-        $criteria->with(array('OrderStatus' => array('select' => 'Name')));
+        $criteria->with = array('OrderStatus' => array('select' => 'Name'));
         $order = YOrder::model()->find($criteria);
 
         if (empty($order)){
