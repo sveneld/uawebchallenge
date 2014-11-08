@@ -4,6 +4,7 @@ CREATE TABLE `api_keys` (
   `Key` char(32) NOT NULL,
   `Enabled` tinyint(1) NOT NULL DEFAULT '0',
   `ValidUntil` datetime NOT NULL,
+  `IdAffiliate` int(10) unsigned NOT NULL,
   PRIMARY KEY (`Key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,3 +100,12 @@ CREATE TABLE `shipping_methods` (
   `AdditionalParam` text,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `affiliates` (
+  `Id` INT UNSIGNED NOT NULL,
+  `Name` VARCHAR(255) NULL,
+  `AllowedShippingMethods` TEXT NULL,
+  `AllowedPaymentMethods` TEXT NULL,
+  `AllowedProductCategories` TEXT NULL,
+  `PercentFromSales` DECIMAL(15,4) NULL,
+  PRIMARY KEY (`Id`));

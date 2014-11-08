@@ -1,6 +1,5 @@
 <?php
 class RemoteModelCall extends DataContainerResponse {
-    public static $ApiKey=null;
 
     public function run(DataContainer $DataContainer){
 
@@ -8,7 +7,7 @@ class RemoteModelCall extends DataContainerResponse {
         if (empty($DataContainer->Key)){
             return $this->addError('Key cannot by empty!');
         }
-        $ApiKeys = YApiKey::model()->cache(3600)->findByPk($DataContainer->Key);
+        $ApiKeys = YApiKey::model()->with(array('Affiliate'))->cache(3600)->findByPk($DataContainer->Key);
         if (!$ApiKeys){
             $this->addError('Key not found!');
             return $this->getData();
@@ -21,7 +20,14 @@ class RemoteModelCall extends DataContainerResponse {
             $this->addError('Key is expired!');
             return $this->getData();
         }
-        self::$ApiKey = $ApiKeys->Key;
+
+        Affiliate::setApiKey($ApiKeys->Key);
+        Affiliate::setAffiliateId($ApiKeys->Affiliate->Id);
+        $allowed = new StdClass();
+        $allowed->shippingMethod = json_decode($ApiKeys->Affiliate->AllowedShippingMethods);
+        $allowed->paymentMethod = json_decode($ApiKeys->Affiliate->AllowedPaymentMethods);
+        $allowed->productCategories = json_decode($ApiKeys->Affiliate->AllowedProductCategories);
+        Affiliate::setAllowed($allowed);
 
         //Class validation
         if (empty($DataContainer->Class)){

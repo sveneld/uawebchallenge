@@ -53,6 +53,8 @@ class OrderModel extends DataContainerResponse
 
         $order->IdPaymentMethod = $data->IdPaymentMethod;
         $order->IdOrderStatus = 1;
+        $order->ApiKey = Affiliate::getApiKey();
+        $order->IdAffiliate = Affiliate::getAffiliateId();
 
         try {
             Database::beginTransaction();
@@ -96,8 +98,8 @@ class OrderModel extends DataContainerResponse
         $criteria = new CDbCriteria();
         $criteria->addCondition('Id = :IdOrder');
         $criteria->params[':IdOrder'] = $data->IdOrder;
-        $criteria->addCondition('ApiKey = :ApiKey');
-        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
+        $criteria->addCondition('IdAffiliate = :IdAffiliate');
+        $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
         $order = YOrder::model()->find($criteria);
         if (empty($order)){
             return $this->addError('No such order');
@@ -139,8 +141,8 @@ class OrderModel extends DataContainerResponse
     public function getList($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('ApiKey = :ApiKey');
-        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
+        $criteria->addCondition('IdAffiliate = :IdAffiliate');
+        $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
         $criteria->with = array('Product');
         $orders = YOrder::model()->findAll($criteria);
         foreach ($orders as $order){
@@ -183,8 +185,8 @@ class OrderModel extends DataContainerResponse
         $criteria = new CDbCriteria();
         $criteria->addCondition('Id = :IdOrder');
         $criteria->params[':IdOrder'] = $data->IdOrder;
-        $criteria->addCondition('ApiKey = :ApiKey');
-        $criteria->params[':ApiKey'] = RemoteModelCall::$ApiKey;
+        $criteria->addCondition('IdAffiliate = :IdAffiliate');
+        $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
         $criteria->select('IdOrderStatus');
         $criteria->with = array('OrderStatus' => array('select' => 'Name'));
         $order = YOrder::model()->find($criteria);
