@@ -10,7 +10,7 @@ class ApiController extends Controller
 {
     public function actionIndex($format = null, $data = null)
     {
-        echo Api::run($format, $data);
+        echo API::run($format, $data);
     }
 
 

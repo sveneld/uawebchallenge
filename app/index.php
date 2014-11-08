@@ -10,7 +10,7 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
-//Yii::$enableIncludePath = false;
+Yii::$enableIncludePath = false;
 Yii::createWebApplication($config)->run();
 
 function dump($msg, $die = 0){
