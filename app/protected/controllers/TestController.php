@@ -5,7 +5,7 @@ class TestController extends Controller
 
     public function actionTest(){
         $dc = new DataContainer();
-        $dc->Key = 'somekey';
+        $dc->Key = 'd833382472255f830cf09f728a49c91b';
         $dc->Class = 'Order';
         $dc->Method = 'add';
 
@@ -55,7 +55,7 @@ class TestController extends Controller
     }
     public function actionTest2(){
         $dc = new DataContainer();
-        $dc->Key = 'somekey';
+        $dc->Key = '03ae7344fce64b8ef0c7dc3a78fae838';
         $dc->Class = 'Order';
         $dc->Method = 'getList';
 

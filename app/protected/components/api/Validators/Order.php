@@ -9,10 +9,10 @@
 class Order extends BaseValidator {
 
     public function getList($data){
-        $this->ValidationMap = array(
-        );
+//        $this->ValidationMap = array(
+//        );
         if ($this->validate($data)){
-            $this->Model->getList($data);
+            return $this->Model->getList($data);
         } else {
             return $this;
         }

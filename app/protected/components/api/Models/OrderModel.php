@@ -57,9 +57,11 @@ class OrderModel extends DataContainerResponse
         $order->IdOrderStatus = 1;
         $order->ApiKey = Affiliate::getApiKey();
         $order->IdAffiliate = Affiliate::getAffiliateId();
+        $order->OrderCreationDate = time();
+        $order->OrderModificationDate = time();
 
+        $transaction = Yii::app()->db->beginTransaction();
         try {
-            Database::beginTransaction();
 
             if (!$order->save()) {
                 return $this->addError('Fatal error 001');
@@ -77,15 +79,16 @@ class OrderModel extends DataContainerResponse
                 $orderProduct->IncomingCurrency = $groupedProducts[$product->Sku]->IncomingCurrency;
                 $orderProduct->IncomingCurrencyRate = $groupedProducts[$product->Sku]->IncomingCurrencyRate;
 
-                if (!$order->save()) {
+                if (!$orderProduct->save()) {
+                    $transaction->rollback();
                     return $this->addError('Fatal error 002');
                 }
 
             }
-            Database::commitTransaction();
-            TransactionFactory::commit();
+
+            $transaction->commit();
         } catch (Exception $e) {
-            TransactionFactory::rollback();
+            $transaction->rollback();
             return $this->addError('Fatal error 003');
         }
 
