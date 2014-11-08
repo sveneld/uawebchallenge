@@ -97,6 +97,7 @@ class OrderModel extends DataContainerResponse
         $criteria = new CDbCriteria();
         $criteria->addCondition('Id', $data->IdOrder);
         $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $criteria->with(array('Product'));
         $order = YOrder::model()->find($criteria);
         if (empty($order)){
             return $this->addError('No such order');
@@ -121,6 +122,15 @@ class OrderModel extends DataContainerResponse
         $data->PaymentMethodName = $order->PaymentMethodName;
         $data->IdPaymentMethod = $order->IdPaymentMethod;
         $data->IdOrderStatus = $order->IdOrderStatus;
+        $data->Products = array();
+        foreach($order->Product as $product){
+            $pData = new stdClass();
+            $pData->Name = $product->Name;
+            $pData->Sku = $product->Sku;
+            $pData->Price = $product->Price;
+            $pData->Quantity = $product->Quantity;
+            $data->Products[] = $pData;
+        }
 
         $this->addData($data);
         return $this;
@@ -130,6 +140,7 @@ class OrderModel extends DataContainerResponse
     {
         $criteria = new CDbCriteria();
         $criteria->addCondition('ApiKey', RemoteModelCall::$ApiKey);
+        $criteria->with(array('Product'));
         $orders = YOrder::model()->findAll($criteria);
         foreach ($orders as $order){
             $data = new stdClass();
@@ -152,6 +163,15 @@ class OrderModel extends DataContainerResponse
             $data->PaymentMethodName = $order->PaymentMethodName;
             $data->IdPaymentMethod = $order->IdPaymentMethod;
             $data->IdOrderStatus = $order->IdOrderStatus;
+            $data->Products = array();
+            foreach($order->Product as $product){
+                $pData = new stdClass();
+                $pData->Name = $product->Name;
+                $pData->Sku = $product->Sku;
+                $pData->Price = $product->Price;
+                $pData->Quantity = $product->Quantity;
+                $data->Products[] = $pData;
+            }
             $this->addData($data);
         }
         return $this;
