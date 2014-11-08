@@ -7,10 +7,18 @@
 
 class DataContainers
 {
-    public $DataContainers = array();
+    private $DataContainers = array();
+    public $Batch = false;
 
+    public function add(DataContainer $dataContainer)
+    {
+        $this->DataContainers[] = $dataContainer;
+    }
 
-
+    public function get()
+    {
+        return $this->DataContainers;
+    }
 
 
 } 

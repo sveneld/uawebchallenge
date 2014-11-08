@@ -8,13 +8,9 @@
 
 class ApiController extends Controller
 {
-    public function actionIndex($get = null, $data = null)
+    public function actionIndex($format = null, $data = null)
     {
-
-        Api::run($get, $data);
-
-
-
+        echo Api::run($format, $data);
     }
 
 

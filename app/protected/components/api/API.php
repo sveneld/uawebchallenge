@@ -8,12 +8,34 @@
 
 class API
 {
-    static public function run($type, $data)
+    static public function run($format, $data)
     {
+        try{
+            $serializerName = 'Serialize' . mb_strtoupper($format);
+            if(!class_exists($serializerName,true))
+                throw new CException("No format {$format}");
+            $response = $serializerName::unserializeData($data);
+
+
+            dump($response);
 
 
 
-        var_dump(444444);
+
+
+
+
+
+
+        } catch(CException $e){
+            return $e->getMessage();
+        }
+
+
 
     }
+
+
+
+
 }
