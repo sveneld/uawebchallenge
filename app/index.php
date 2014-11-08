@@ -11,3 +11,7 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
+
+function dump($msg, $die = 0){
+    VarDumper::dump($msg, $die);
+}

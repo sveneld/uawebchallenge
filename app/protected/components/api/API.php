@@ -8,7 +8,7 @@
 
 class API
 {
-    public function run($type, $data)
+    static public function run($type, $data)
     {
 
 
