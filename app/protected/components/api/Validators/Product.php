@@ -12,6 +12,7 @@ class Product extends BaseValidator {
         } else {
             dump('$this->validate fail');
             //TODO:Обрабатываем ошибки из валидатора. /// Вовзращаем экземпляр валидатора, который есть тоже DataContainerReponse и содержит свои ошибки
+            $this->addError('Data validation failed');
             return $this;
         }
     }
