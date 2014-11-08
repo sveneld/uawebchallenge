@@ -24,6 +24,13 @@ class TestController extends Controller
     public function actionChen()
     {
 
+        $m = new ShippingMethod();
+        $m->getList();
+
+
+
+        die;
+
         $data = array();
 
         $model = new stdClass();
