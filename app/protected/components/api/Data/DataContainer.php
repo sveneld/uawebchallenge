@@ -7,6 +7,16 @@ class DataContainer
     public $Method;
     public $Class;
     public $Data;
+    private $result;
 
+    public function setResult(DataContainerResponse $dataContainerResponse)
+    {
+        $this->result = $dataContainerResponse;
+    }
+
+    public function getResult()
+    {
+        return $this->result;
+    }
 
 } 
