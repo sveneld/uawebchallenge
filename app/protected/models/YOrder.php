@@ -44,7 +44,7 @@ class YOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Id, ApiKey, IdAffiliate', 'required'),
+			array('ApiKey, IdAffiliate', 'required'),
 			array('Id, IdAffiliate', 'numerical', 'integerOnly'=>true),
 			array('FullName, Address, AddressAdditional, ShippingMethodName, PaymentMethodName', 'length', 'max'=>255),
 			array('Phone, PhoneAdditional, Country, City', 'length', 'max'=>45),

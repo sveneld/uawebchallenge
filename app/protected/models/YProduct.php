@@ -13,7 +13,7 @@
  * @property string $Price
  * @property string $IncomingPrice
  * @property string $IncomingCurrency
- * @property string $IncommingCurrencyRate
+ * @property string $IncomingCurrencyRate
  */
 class YProduct extends CActiveRecord
 {
@@ -38,12 +38,12 @@ class YProduct extends CActiveRecord
             array('Sku', 'length', 'max' => 100),
             array('Name, Image', 'length', 'max' => 255),
             array('InStock', 'length', 'max' => 10),
-            array('Price, IncomingPrice, IncommingCurrencyRate', 'length', 'max' => 15),
+            array('Price, IncomingPrice, IncomingCurrencyRate', 'length', 'max' => 15),
             array('IncomingCurrency', 'length', 'max' => 3),
             array('Description', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('Id, Sku, Name, Description, Image, InStock, Price, IncomingPrice, IncomingCurrency, IncommingCurrencyRate', 'safe', 'on' => 'search'),
+            array('Id, Sku, Name, Description, Image, InStock, Price, IncomingPrice, IncomingCurrency, IncomingCurrencyRate', 'safe', 'on' => 'search'),
         );
     }
 
@@ -75,7 +75,7 @@ class YProduct extends CActiveRecord
             'Price' => 'Price',
             'IncomingPrice' => 'Incoming Price',
             'IncomingCurrency' => 'Incoming Currency',
-            'IncommingCurrencyRate' => 'Incomming Currency Rate',
+            'IncomingCurrencyRate' => 'Incomming Currency Rate',
         );
     }
 
@@ -106,7 +106,7 @@ class YProduct extends CActiveRecord
         $criteria->compare('Price', $this->Price, true);
         $criteria->compare('IncomingPrice', $this->IncomingPrice, true);
         $criteria->compare('IncomingCurrency', $this->IncomingCurrency, true);
-        $criteria->compare('IncommingCurrencyRate', $this->IncommingCurrencyRate, true);
+        $criteria->compare('IncomingCurrencyRate', $this->IncomingCurrencyRate, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
