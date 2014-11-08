@@ -6,12 +6,17 @@
  * Time: 16:16
  */
 
-class ProductCategoryModel {
+class ProductCategoryModel extends DataContainerResponse {
 
-    public function getList(){
-        $data = new stdClass();
-        $data->SomeVal = 'coool555';
-        $this->addData($data);
+    public function getList($data){
+        $categories = YProductCategory::model()->findAll();
+        foreach ($categories as $category){
+            $data = new stdClass();
+            $data->Id = $category->Id;
+            $data->Name = $category->Name;
+            $this->addData($data);
+        }
+        return $this;
     }
 
 } 

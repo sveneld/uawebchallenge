@@ -23,11 +23,20 @@ class RemoteModelCall extends DataContainerResponse {
             return $this->addError('Remote class cannot by empty!');
         }
 
-        $classExists = class_exists($DataContainer->Class,true);
-        //TODO: Отстреливает трай кетч Yii, подумать как завернуть такую проверку. Поменять на проверку наличия одноименного файла в валидаторе
-        if (!$classExists){
-            return $this->addError('Remote class not found!');
+        try{
+            if (!class_exists($DataContainer->Class)){
+                throw new ApiException('Remote class not found!');
+            }
+        }catch (ApiException $e){
+            return $this->addError($e->getMessage());
         }
+
+
+//        $classExists = class_exists($DataContainer->Class);
+//        //TODO: Отстреливает трай кетч Yii, подумать как завернуть такую проверку. Поменять на проверку наличия одноименного файла в валидаторе
+//        if (!$classExists){
+//            return $this->addError('Remote class not found!');
+//        }
         $Model = new $DataContainer->Class();
         if (method_exists($Model,$DataContainer->Method)){
             return $Model->{$DataContainer->Method}($DataContainer->Data);

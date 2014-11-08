@@ -21,6 +21,7 @@ class BaseValidator extends RemoteModelCall {
             $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
             if (!$DataFieldValidationResult) {
                 $success = false;
+                $this->addError('Validation of field "'.get_class($this->Model).' -> '.$DataFiledName.'" failed!');
             }
         }
         if (!$success) {

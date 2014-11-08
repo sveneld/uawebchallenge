@@ -14,13 +14,14 @@ class DataContainerResponse{
         return $this->getData();
     }
     public function getData(){
+        $this->_Response = array();
         if (!empty($this->_Errors)){
-            $this->_Response['success'] = 'false';
+            $this->_Response['Success'] = 'false';
             foreach($this->_Errors as $ErrorRow){
                 $this->_Response['Errors'][] = $ErrorRow;
             }
         } else {
-            $this->_Response['success'] = 'true';
+            $this->_Response['Success'] = 'true';
         }
         if (!empty($this->_Data)){
             foreach($this->_Data as $DataRow){

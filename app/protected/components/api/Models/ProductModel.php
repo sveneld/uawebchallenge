@@ -1,7 +1,7 @@
 <?php
 class ProductModel extends DataContainerResponse {
 
-    public function getList(){
+    public function getList($data){
         $data = new stdClass();
         $data->SomeVal = 'coool555';
         $this->addData($data);

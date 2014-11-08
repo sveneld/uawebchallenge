@@ -11,13 +11,14 @@ class TestController extends Controller
 
         $data = new stdClass();
         $data->CategoryId = 1;
-        $data->ManufacturerId = 2;
+        $data->ManufacturerId2 = 2;
 
         $dc->Data =$data;
 
         $data = (new RemoteModelCall())->run($dc);
         dump($data);
         dump($data->getData());
+        dump(json_encode($data->getData()));
 
     }
 
@@ -103,9 +104,19 @@ class TestController extends Controller
     }
 
     public function actionV(){
-        $res = YProduct::model()->with(array('Category', 'Category.CategoryName'))->findAll();
-        $res = YProductCategory::model()->with(array('Product', 'Product.ProductName'))->findAll();
-        dump($res);
+        $dc = new DataContainer();
+        $dc->Key = 'somekey';
+        $dc->Class = 'ProductCategory';
+        $dc->Method = 'getList';
+
+        $data = new stdClass();
+        $dc->Data =$data;
+
+        $data = (new RemoteModelCall())->run($dc);
+        dump($data);
+        dump($data->getData());
+        dump(json_encode($data->getData()));
+
     }
 
 }
