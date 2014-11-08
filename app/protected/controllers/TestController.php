@@ -7,12 +7,12 @@ class TestController extends Controller
         $dc = new DataContainer();
         $dc->Key = 'somekey';
         $dc->Class = 'Order';
-        $dc->Method = 'get';
+        $dc->Method = 'add';
 
         $data = new stdClass();
 //        $data->CategoryId = 1;
 //        $data->ManufacturerId2 = 2;
-        $data->IdOrder = 2;
+        $data->IdOrde2r = 2;
 
         $dc->Data =$data;
 
@@ -26,7 +26,7 @@ class TestController extends Controller
         $dc = new DataContainer();
         $dc->Key = 'somekey';
         $dc->Class = 'Order';
-        $dc->Method = 'get';
+        $dc->Method = 'getList';
 
         $data = new stdClass();
 //        $data->CategoryId = 1;

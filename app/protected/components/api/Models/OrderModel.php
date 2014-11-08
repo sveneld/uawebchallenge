@@ -51,7 +51,6 @@ class OrderModel extends DataContainerResponse
         $order->Fee = $data->Fee;
         $order->Total = $data->Total;
 
-        $order->PaymentMethodName = $data->PaymentMethodName;
         $order->IdPaymentMethod = $data->IdPaymentMethod;
         $order->IdOrderStatus = 1;
 

@@ -9,6 +9,8 @@
 class Order extends BaseValidator {
 
     public function getList($data){
+        $this->ValidationMap = array(
+        );
         if ($this->validate($data)){
             $this->Model->getList($data);
         } else {
@@ -28,9 +30,6 @@ class Order extends BaseValidator {
             'Discount' => 'validateFloat',
             'Fee' => 'validateFloat',
             'Total' => 'validateFloat',
-            'PaymentMethodName' => 'validateFloat',
-//            'notEmpty' => 'Address',
-//            'notEmpty' => 'Address',
         );
         $this->ValidationMapUnnesessaryFields = array(
             'PhoneAdditional' => 'string',
@@ -55,6 +54,9 @@ class Order extends BaseValidator {
     }
 
     public function getStatus($data){
+        $this->ValidationMap = array(
+            'IdOrder' => 'validateInt',
+        );
         if ($this->validate($data)){
             $this->Model->getStatus($data);
         } else {
