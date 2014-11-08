@@ -51,6 +51,14 @@ class TestController extends Controller
 
         die;
 
+
+
+
+    }
+
+    public function actionChen2()
+    {
+
         $data = array();
 
         $model = new stdClass();
@@ -89,6 +97,7 @@ class TestController extends Controller
         $response = curl_exec($ch);
 
         var_dump($response);
+
 
 
     }

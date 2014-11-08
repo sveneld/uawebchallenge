@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chen
- * Date: 01.11.2014
- * Time: 12:12
- */
 
 class SerializeJSONRPC2 implements Serialize
 {
@@ -19,15 +13,17 @@ class SerializeJSONRPC2 implements Serialize
         $data = json_decode($data);
         if(!is_array($data))
             $data = array($data);
+        else
+            $dataContainers->isBatch();
         foreach($data as $item){
             $dataContainer = new DataContainer();
             $method = explode('.',(!empty($item->method) ? $item->method : '') );
-            $dataContainer->id = isset($item->id) ? $item->id : null;
-            $dataContainer->class = isset($method[0]) ? $method[0] : '';
-            $dataContainer->method = isset($method[1]) ? $method[1] : '';
-            $dataContainer->key = isset($item->params->key) ? $item->params->key : null;
-            $dataContainer->data = isset($item->params->data) ? $item->params->data : null;
-            $dataContainers->add($dataContainer);
+            $dataContainer->Id = isset($item->id) ? $item->id : null;
+            $dataContainer->Class = isset($method[0]) ? $method[0] : '';
+            $dataContainer->Method = isset($method[1]) ? $method[1] : '';
+            $dataContainer->Key = isset($item->params->key) ? $item->params->key : null;
+            $dataContainer->Data = isset($item->params->data) ? $item->params->data : null;
+            $dataContainers->addContainer($dataContainer);
         }
         return $dataContainers;
     }
