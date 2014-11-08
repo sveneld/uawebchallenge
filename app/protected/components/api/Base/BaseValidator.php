@@ -14,7 +14,7 @@ class BaseValidator extends RemoteModelCall {
 
     public function validate(&$data){
         $success = true;
-        foreach($this->ValidationMap as $ValidationMethodName=>$DataFiledName){
+        foreach($this->ValidationMap as $DataFiledName=>$ValidationMethodName){
             if (!isset($data->$DataFiledName)) {
                 $success = false;
                 $this->addError('Field "'.get_class($this->Model).' -> '.$DataFiledName.'" can not be empty!');
@@ -26,7 +26,7 @@ class BaseValidator extends RemoteModelCall {
                 }
             }
         }
-        foreach($this->ValidationMapUnnesessaryFields as $ValidationMethodName=>$DataFiledName){
+        foreach($this->ValidationMapUnnesessaryFields as $DataFiledName=>$ValidationMethodName){
             if(!empty($data->$DataFiledName)){
                 $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
                 if (!$DataFieldValidationResult) {
@@ -46,7 +46,16 @@ class BaseValidator extends RemoteModelCall {
     }
 
     public function notEmpty($value){
-        return !empty($value);
+        return isset($value);
+    }
+
+    //Some additional filter?
+    public function validateString($value){
+        return isset($value);
+    }
+    //Some additional filter?
+    public function validateFloat($value){
+        return filter_var($value, FILTER_VALIDATE_FLOAT);
     }
 
 }
