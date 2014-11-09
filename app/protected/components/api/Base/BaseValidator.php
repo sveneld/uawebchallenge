@@ -14,9 +14,19 @@ class BaseValidator extends DataContainerResponse {
         $success = true;
         foreach($validationMap as $DataFiledName=>$ValidationMethodName) {
             if(is_array($ValidationMethodName)){
-                foreach($data->$DataFiledName as &$dataTmpArray){
-                    if (!$this->dataValidator($dataTmpArray,$ValidationMethodName,$isNessesaryFields)){
-                        $success=false;
+                //Если пришел пустой массив, и он объявлен как обязательный
+                if ($isNessesaryFields && !isset($data->$DataFiledName)) {
+                    $success = false;
+                    $this->addError('Array "' . get_class($this->Model) . ' -> ' . $DataFiledName . '" can not be empty!');
+                    //Необязательно, незадано - все ок, игнорим
+                } else if (!$isNessesaryFields && !isset($data->$DataFiledName)) {
+                    //Обязательно, задано / Необязательно, задано
+                } else {
+//                dump($data->$DataFiledName,1);
+                    foreach ($data->$DataFiledName as &$dataTmpArray) {
+                        if (!$this->dataValidator($dataTmpArray, $ValidationMethodName, $isNessesaryFields)) {
+                            $success = false;
+                        }
                     }
                 }
             } else {
