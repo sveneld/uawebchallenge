@@ -71,7 +71,7 @@ class YOrder extends CActiveRecord
 		return array(
             'ShippingMethod' => array(self::HAS_ONE, 'YShippingMethod', array('IdShippingMethod' => 'Id')),
             'PaymentMethod' => array(self::HAS_ONE, 'YPaymentMethod', array('IdPaymentMethod' => 'Id')),
-            'OrderStatus' => array(self::HAS_ONE, 'YOrderStatus', array('IdOrderStatus' => 'Id')),
+            'OrderStatus' => array(self::HAS_ONE, 'YOrderStatus', array('Id' => 'IdOrderStatus')),
             'Product' => array(self::HAS_MANY, 'YOrderProduct', array('IdOrder' => 'Id')),
 		);
 	}

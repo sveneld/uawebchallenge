@@ -199,11 +199,11 @@ class OrderModel extends DataContainerResponse
     public function getStatus($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('Id = :IdOrder');
+        $criteria->addCondition('t.Id = :IdOrder');
         $criteria->params[':IdOrder'] = $data->IdOrder;
         $criteria->addCondition('IdAffiliate = :IdAffiliate');
         $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
-        $criteria->select('IdOrderStatus');
+        $criteria->select = 'IdOrderStatus';
         $criteria->with = array('OrderStatus' => array('select' => 'Name'));
         $order = YOrder::model()->cache(CACHE_LIFETIME)->find($criteria);
 
