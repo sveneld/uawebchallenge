@@ -29,7 +29,7 @@ class SerializeJSONRPC2 implements SerializeApi
                     $jsonrpc2->error['data'][] = $error;
                 }
             } else {
-                $jsonrpc2->result = $dataContainer->getResult()->Data;
+                $jsonrpc2->result = $dataContainer->getResult()->getData();
             }
             $resultArray[] = $jsonrpc2;
         }
