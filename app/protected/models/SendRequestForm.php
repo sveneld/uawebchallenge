@@ -2,7 +2,7 @@
 
 class SendRequestForm extends CFormModel
 {
-    public $request;
+    public $request = '{"jsonrpc": "2.0", "method": "subtract", "params": "data", "id": 1}';
     public $response;
 
     public function attributeLabels()
