@@ -7,38 +7,65 @@
     <tr>
         <td>
             Отримати список категорій
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
     <tr>
         <td>
             Отримати список товарів
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
     <tr>
         <td>
             Отримати список способів оплати
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
     <tr>
         <td>
             Отримати список способів доставки
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
     <tr>
         <td>
             Відправити замовлення
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Отримати данні по замовленню
+            <pre></pre>
+        </td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
     <tr>
         <td>
             Отримати статус замовлення
+            <pre></pre>
         </td>
-        <td></td>
+        <td>
+            <pre></pre>
+        </td>
     </tr>
 
 </table>
