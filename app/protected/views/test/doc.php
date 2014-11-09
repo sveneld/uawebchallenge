@@ -7,10 +7,31 @@
     <tr>
         <td>
             Отримати список категорій
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "ProductCategory.getList",
+    "params": {
+        "data": null,
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "Id": "1",
+            "Name": "Фигурки"
+        },
+        {
+            "Id": "2",
+            "Name": "Манга (Комиксы)"
+        }
+    ]
+}</pre>
         </td>
     </tr>
     <tr>
@@ -74,10 +95,35 @@
     <tr>
         <td>
             Отримати список способів оплати
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "PaymentMethod.getList",
+    "params": {
+        "data": null,
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "Id": "1",
+            "Name": "Оплата при получении",
+            "Cost": "0.0000",
+            "AdditionalParam": null
+        },
+        {
+            "Id": "2",
+            "Name": "Приват24",
+            "Cost": "0.0000",
+            "AdditionalParam": null
+        }
+    ]
+}</pre>
         </td>
     </tr>
     <tr>
@@ -111,10 +157,50 @@
     <tr>
         <td>
             Відправити замовлення
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "Order.add",
+    "params": {
+        "data": {
+            "FullName": "Петров Петро Петрович",
+            "Phone": "+380660001122",
+            "Country": "Україна",
+            "City": "Київ",
+            "Address": "Петренка 10",
+            "IdShippingMethod": 2,
+            "IdPaymentMethod": 2,
+            "Discount": 2,
+            "Fee": 2,
+            "Total": 2,
+            "PhoneAdditional": "",
+            "Products": [
+                {
+                    "Sku": "FB293",
+                    "Quantity": "2",
+                    "Price": 156.29
+                },
+                {
+                    "Sku": "FB291",
+                    "Quantity": 3,
+                    "Price": 500
+                }
+            ]
+        },
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "IdOrder": "14"
+        }
+    ]
+}</pre>
         </td>
     </tr>
     <tr>
