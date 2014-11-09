@@ -23,6 +23,7 @@ class RemoteModelCall extends DataContainerResponse {
 
         Affiliate::setApiKey($ApiKeys->Key);
         Affiliate::setAffiliateId($ApiKeys->Affiliate->Id);
+        Affiliate::setAffiliatePercentFromSales($ApiKeys->Affiliate->PercentFromSales);
         $allowed = new StdClass();
         $allowed->shippingMethod = json_decode($ApiKeys->Affiliate->AllowedShippingMethods);
         $allowed->paymentMethod = json_decode($ApiKeys->Affiliate->AllowedPaymentMethods);
