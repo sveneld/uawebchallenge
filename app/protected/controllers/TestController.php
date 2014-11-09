@@ -150,7 +150,7 @@ class TestController extends Controller
         $data[] = $model2;
 
         $data =  json_encode($data);
-//        var_dump($data);
+        var_dump($data);
         echo '<br>';
 
         $ch = curl_init();

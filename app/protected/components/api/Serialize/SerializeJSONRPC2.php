@@ -2,13 +2,23 @@
 
 class SerializeJSONRPC2 implements SerializeApi
 {
-    public static function serializeData($data)
+    public static function serializeData(DataContainers $data)
     {
         $resultArray = array();
+        if($data->getError()){
+            $jsonrpc2 = new stdClass();
+            $jsonrpc2->jsonrpc = '2.0';
+            $jsonrpc2->id = null;
+            $jsonrpc2->error = array();
+            $jsonrpc2->error['code'] = -140501;
+            $jsonrpc2->error['message'] = 'Error data';
+            return json_encode($jsonrpc2);
+        }
         foreach($data->getContainers() as $dataContainer){
             if(!$dataContainer->Id && !empty($dataContainer->result->Errors))
                 continue;
             $jsonrpc2 = new stdClass();
+            $jsonrpc2->jsonrpc = '2.0';
             $jsonrpc2->id = $dataContainer->Id;
             if(!empty($dataContainer->getResult()->Errors)){
                 $jsonrpc2->error = array();
@@ -32,6 +42,10 @@ class SerializeJSONRPC2 implements SerializeApi
     {
         $dataContainers = new DataContainers();
         $data = json_decode($data);
+        if(!$data){
+            $dataContainers->isError();
+            return $dataContainers;
+        }
         if(!is_array($data))
             $data = array($data);
         else
