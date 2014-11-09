@@ -277,7 +277,17 @@
 }</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "IdOrder": "5",
+            "IdOrderStatus": "1",
+            "OrderStatusName": "В ожидании"
+        }
+    ]
+}</pre>
         </td>
     </tr>
     <tr>
