@@ -206,16 +206,76 @@
     <tr>
         <td>
             Отримати данні по замовленню
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "Order.get",
+    "params": {
+        "data": {
+            "IdOrder": "5"
+        },
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "IdOrder": "5",
+            "FullName": "Петров Петро Петрович",
+            "Phone": "+380660001122",
+            "PhoneAdditional": null,
+            "Country": "Україна",
+            "City": "Київ",
+            "Address": "Петренка 10",
+            "AddressAdditional": null,
+            "SubTotal": "1998.0000",
+            "ShippingTotal": "20.0000",
+            "PaymentTotal": "0.0000",
+            "Discount": "2.0000",
+            "Fee": "2.0000",
+            "Total": "2.0000",
+            "ShippingMethodName": "Укрпочта",
+            "IdShippingMethod": "2",
+            "PaymentMethodName": "Приват24",
+            "IdPaymentMethod": "2",
+            "IdOrderStatus": "1",
+            "Products": [
+                {
+                    "Name": "KiKis Delivery Service фигурка",
+                    "Sku": "FB291",
+                    "Price": "500.0000",
+                    "Quantity": "3"
+                },
+                {
+                    "Name": "Фигурка Rozen Maiden",
+                    "Sku": "FB293",
+                    "Price": "156.2900",
+                    "Quantity": "2"
+                }
+            ]
+        }
+    ]
+}</pre>
         </td>
     </tr>
     <tr>
         <td>
             Отримати статус замовлення
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "Order.getStatus",
+    "params": {
+        "data": {
+            "IdOrder": "5"
+        },
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
             <pre></pre>
@@ -224,10 +284,97 @@
     <tr>
         <td>
             Отримати список замовлень
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "method": "Order.getList",
+    "params": {
+        "data": {
+            "DateFrom": "01-11-2014",
+            "DateTo": "15-11-2014",
+            "Page": "1"
+        },
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "IdOrder": "1",
+            "FullName": "Петров Петро Петрович",
+            "Phone": "+380660001122",
+            "PhoneAdditional": null,
+            "Country": "Україна",
+            "City": "Київ",
+            "Address": "Петренка 10",
+            "AddressAdditional": null,
+            "SubTotal": "1998.0000",
+            "ShippingTotal": "20.0000",
+            "PaymentTotal": "0.0000",
+            "Discount": "2.0000",
+            "Fee": "2.0000",
+            "Total": "2.0000",
+            "ShippingMethodName": "Укрпочта",
+            "IdShippingMethod": "2",
+            "PaymentMethodName": "Приват24",
+            "IdPaymentMethod": "2",
+            "IdOrderStatus": "1",
+            "Products": [
+                {
+                    "Name": "KiKis Delivery Service фигурка",
+                    "Sku": "FB291",
+                    "Price": "500.0000",
+                    "Quantity": "3"
+                },
+                {
+                    "Name": "Фигурка Rozen Maiden",
+                    "Sku": "FB293",
+                    "Price": "156.2900",
+                    "Quantity": "2"
+                }
+            ]
+        },
+        {
+            "IdOrder": "2",
+            "FullName": "Петров Петро Петрович",
+            "Phone": "+380660001122",
+            "PhoneAdditional": null,
+            "Country": "Україна",
+            "City": "Київ",
+            "Address": "Петренка 10",
+            "AddressAdditional": null,
+            "SubTotal": "1998.0000",
+            "ShippingTotal": "20.0000",
+            "PaymentTotal": "0.0000",
+            "Discount": "2.0000",
+            "Fee": "2.0000",
+            "Total": "2.0000",
+            "ShippingMethodName": "Укрпочта",
+            "IdShippingMethod": "2",
+            "PaymentMethodName": "Приват24",
+            "IdPaymentMethod": "2",
+            "IdOrderStatus": "1",
+            "Products": [
+                {
+                    "Name": "KiKis Delivery Service фигурка",
+                    "Sku": "FB291",
+                    "Price": "500.0000",
+                    "Quantity": "3"
+                },
+                {
+                    "Name": "Фигурка Rozen Maiden",
+                    "Sku": "FB293",
+                    "Price": "156.2900",
+                    "Quantity": "2"
+                }
+            ]
+        } ...
+    ]
+}</pre>
         </td>
     </tr>
 
