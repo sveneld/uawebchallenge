@@ -145,9 +145,21 @@ class OrderModel extends DataContainerResponse
 
     public function getList($data)
     {
+        dump($data);
         $criteria = new CDbCriteria();
         $criteria->addCondition('IdAffiliate = :IdAffiliate');
         $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
+        if(!empty($data->DateFrom)){
+            $criteria->addCondition('OrderCreationDate >= :OrderCreationDateFrom');
+            $criteria->params[':OrderCreationDateFrom'] = $data->DateFrom;
+        }
+        if(!empty($data->DateTo)){
+            $criteria->addCondition('OrderCreationDate <= :OrderCreationDateTo');
+            $criteria->params[':OrderCreationDateTo'] = $data->DateTo;
+        }
+        $page = (!empty($data->Page)) ? $data->Page : 1;
+        $criteria->offset = ($page-1)*100;
+        $criteria->limit = 100;
         $criteria->with = array('Product');
         $orders = YOrder::model()->findAll($criteria);
         foreach ($orders as $order){

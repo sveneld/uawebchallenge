@@ -2,9 +2,8 @@
 class BaseValidator extends RemoteModelCall {
     protected $ValidationMap = array();
     protected $ValidationMapUnnesessaryFields = array();
-//    protected $ValidationMapResult = array();
     protected $Model = null;
-    protected $Data = null;
+//    protected $Data = null;
 
     //Example
     function __construct(){
@@ -16,8 +15,7 @@ class BaseValidator extends RemoteModelCall {
         $success = true;
         foreach($validationMap as $DataFiledName=>$ValidationMethodName) {
             if(is_array($ValidationMethodName)){
-//                dump('recursion begin');
-                foreach($data->$DataFiledName as $dataTmpArray){
+                foreach($data->$DataFiledName as &$dataTmpArray){
                     if (!$this->dataValidator($dataTmpArray,$ValidationMethodName,$isNessesaryFields)){
                         $success=false;
                     }
@@ -56,35 +54,6 @@ class BaseValidator extends RemoteModelCall {
         return true;
     }
 
-//    public function validate(&$data){
-//        $success = true;
-//        foreach($this->ValidationMap as $DataFiledName=>$ValidationMethodName){
-//            if (!isset($data->$DataFiledName)) {
-//                $success = false;
-//                $this->addError('Field "'.get_class($this->Model).' -> '.$DataFiledName.'" can not be empty!');
-//            } else {
-//                $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
-//                if (!$DataFieldValidationResult) {
-//                    $success = false;
-//                    $this->addError('Validation of field "'.get_class($this->Model).' -> '.$DataFiledName.'" failed!');
-//                }
-//            }
-//        }
-//        foreach($this->ValidationMapUnnesessaryFields as $DataFiledName=>$ValidationMethodName){
-//            if(!empty($data->$DataFiledName)){
-//                $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
-//                if (!$DataFieldValidationResult) {
-//                    $success = false;
-//                    $this->addError('Validation of unnessesary field "'.get_class($this->Model).' -> '.$DataFiledName.'" failed!');
-//                }
-//            }
-//        }
-//        if (!$success) {
-//            return false;
-//        }
-//        return true;
-//    }
-
     public function validateInt($value){
         return is_numeric($value);
     }
@@ -101,16 +70,19 @@ class BaseValidator extends RemoteModelCall {
     public function validateFloat($value){
         return filter_var($value, FILTER_VALIDATE_FLOAT);
     }
-    public function validateProductSku($value){
-        $criteria = new CDbCriteria();
-        $criteria->addCondition('Sku = :sku');
-        $criteria->select = 'Sku';
-        $criteria->params[':sku'] = $value;
-        $products = YProduct::model()->cache(3600)->find($criteria);
-        if (!$products){
-            return false;
-        } else {
+    public function validateDate(&$value){
+        //Unix timestamp
+        if (is_numeric($value)){
             return true;
+        } else {
+            if(strtotime($value)){
+                dump('validateDate strtotime() true');
+                $value = strtotime($value);
+                dump($value);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 

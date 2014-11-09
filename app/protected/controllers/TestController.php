@@ -62,7 +62,8 @@ class TestController extends Controller
         $data = new stdClass();
 //        $data->CategoryId = 1;
 //        $data->ManufacturerId2 = 2;
-        $data->IdOrder = 2;
+        $data->IdOrder = 4;
+        $data->DateFrom = date('Y-m-d H:i:s');
 
         $dc->Data =$data;
 
