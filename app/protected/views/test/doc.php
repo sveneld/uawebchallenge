@@ -1,4 +1,4 @@
-<table width="100%">
+<table width="100%" class="tabledoc">
     <tr>
         <td width="50%"><b>Запит</b></td>
         <td><b>Відповідь</b></td>

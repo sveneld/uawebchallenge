@@ -236,3 +236,7 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+.tabledoc td {
+    vertical-align: top;
+}
