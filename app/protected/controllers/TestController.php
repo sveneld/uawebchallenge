@@ -14,6 +14,11 @@ class TestController extends Controller
         $this->render('test', array('model'=>$model));
     }
 
+    public function actionDoc()
+    {
+        $this->render('doc');
+    }
+
     public function actionTest0(){
         $dc = new DataContainer();
         $dc->Key = 'd833382472255f830cf09f728a49c91b';
