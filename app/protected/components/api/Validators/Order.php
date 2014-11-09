@@ -32,7 +32,6 @@ class Order extends BaseValidator {
             'IdPaymentMethod' => 'validateIdPaymentMethod',
             'Discount' => 'validateFloat',
             'Fee' => 'validateFloat',
-            'Total' => 'validateFloat',
             'Products' => array(
                 'Sku'=>'validateProductSku',
                 'Quantity'=>'validateInt',
@@ -100,7 +99,7 @@ class Order extends BaseValidator {
     }
 
     public function validateIdPaymentMethod($id){
-        if (!$this->paymentMethod($id)){
+        if (!$this->validateInt($id)){
             return false;
         }
         if (!in_array($id, Affiliate::getAllowed()->shippingMethod)){

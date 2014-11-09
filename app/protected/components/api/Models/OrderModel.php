@@ -51,7 +51,7 @@ class OrderModel extends DataContainerResponse
 
         $order->Discount = $data->Discount;
         $order->Fee = $data->Fee;
-        $order->Total = $data->Total;
+        $order->Total = $subTotal + $order->ShippingTotal + $order->PaymentTotal + $order->Fee - $order->Discount;
 
         $order->IdPaymentMethod = $data->IdPaymentMethod;
         $order->IdOrderStatus = 1;
