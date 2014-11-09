@@ -68,18 +68,20 @@ class TestController extends Controller
     }
     public function actionTest2(){
         $dc = new DataContainer();
-        $dc->Key = '03ae7344fce64b8ef0c7dc3a78fae838';
+        $dc->Key = 'd833382472255f830cf09f728a49c91b';
         $dc->Class = 'Order';
         $dc->Method = 'getList';
 
         $data = new stdClass();
 //        $data->CategoryId = 1;
 //        $data->ManufacturerId2 = 2;
-        $data->IdOrder = 4;
-        $data->DateFrom = date('Y-m-d H:i:s');
+//        $data->IdOrder = 4;
+        $data->DateFrom = date('Y-m-d H:i:s',time() - 3600*50);
+        $data->Page = 1;
 
         $dc->Data =$data;
 
+        dump($dc);
         $data = (new RemoteModelCall())->run($dc);
         dump($data);
 //        dump($data->getData());
