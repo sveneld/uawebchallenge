@@ -34,10 +34,29 @@
     <tr>
         <td>
             Отримати список способів доставки
-            <pre></pre>
+            <pre>{
+   "jsonrpc":"2.0",
+   "method":"ShippingMethod.getList",
+   "params":{
+      "data":null,
+      "key":"03ae7344fce64b8ef0c7dc3a78fae838"
+   },
+   "id":1
+}</pre>
         </td>
         <td>
-            <pre></pre>
+            <pre>{
+   "jsonrpc":"2.0",
+   "id":1,
+   "result":[
+      {
+         "Id":"1",
+         "Name":"\u0421\u0430\u043c\u043e\u0432\u044b\u0432\u043e\u0437",
+         "Cost":"0.0000",
+         "AdditionalParam":null
+      }
+   ]
+}</pre>
         </td>
     </tr>
     <tr>
