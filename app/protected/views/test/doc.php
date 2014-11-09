@@ -1,12 +1,12 @@
 <table width="100%" class="tabledoc">
-    <tr>
-        <td width="50%"><b>Запит</b></td>
-        <td><b>Відповідь</b></td>
-    </tr>
+<tr>
+    <td width="50%"><b>Запит</b></td>
+    <td><b>Відповідь</b></td>
+</tr>
 
-    <tr>
-        <td>
-            Отримати список категорій
+<tr>
+    <td>
+        Отримати список категорій
             <pre>{
     "jsonrpc": "2.0",
     "method": "ProductCategory.getList",
@@ -16,8 +16,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -32,11 +32,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати список товарів
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати список товарів
             <pre>{
     "jsonrpc": "2.0",
     "method": "Product.getList",
@@ -46,8 +46,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -90,11 +90,11 @@
         }...
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати список способів оплати
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати список способів оплати
             <pre>{
     "jsonrpc": "2.0",
     "method": "PaymentMethod.getList",
@@ -104,8 +104,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -124,11 +124,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати список способів доставки
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати список способів доставки
             <pre>{
    "jsonrpc":"2.0",
    "method":"ShippingMethod.getList",
@@ -138,8 +138,8 @@
    },
    "id":1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -152,11 +152,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Відправити замовлення
+    </td>
+</tr>
+<tr>
+    <td>
+        Відправити замовлення
             <pre>{
     "jsonrpc": "2.0",
     "method": "Order.add",
@@ -189,8 +189,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -200,11 +200,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати данні по замовленню
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати данні по замовленню
             <pre>{
     "jsonrpc": "2.0",
     "method": "Order.get",
@@ -216,8 +216,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -259,11 +259,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати статус замовлення
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати статус замовлення
             <pre>{
     "jsonrpc": "2.0",
     "method": "Order.getStatus",
@@ -275,8 +275,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -288,11 +288,11 @@
         }
     ]
 }</pre>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Отримати список замовлень
+    </td>
+</tr>
+<tr>
+    <td>
+        Отримати список замовлень
             <pre>{
     "jsonrpc": "2.0",
     "method": "Order.getList",
@@ -306,8 +306,8 @@
     },
     "id": 1
 }</pre>
-        </td>
-        <td>
+    </td>
+    <td>
             <pre>{
     "jsonrpc": "2.0",
     "id": 1,
@@ -384,7 +384,142 @@
         } ...
     ]
 }</pre>
-        </td>
-    </tr>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        Множинний запит
+            <pre>[
+    {
+        "jsonrpc": "2.0",
+        "method": "ProductCategory.getList",
+        "params": {
+            "data": null,
+            "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+        },
+        "id": 2
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "PaymentMethod.getList",
+        "params": {
+            "data": null,
+            "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+        },
+        "id": 1
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "ShippingMethod.getList",
+        "params": {
+            "data": null,
+            "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+        },
+        "id": 3
+    }
+]</pre>
+    </td>
+    <td>
+            <pre>[
+    {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": [
+            {
+                "Id": "1",
+                "Name": "Фигурки"
+            },
+            {
+                "Id": "2",
+                "Name": "Манга (Комиксы)"
+            }
+        ]
+    },
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": [
+            {
+                "Id": "1",
+                "Name": "Оплата при получении",
+                "Cost": "0.0000",
+                "AdditionalParam": null
+            },
+            {
+                "Id": "2",
+                "Name": "Приват24",
+                "Cost": "0.0000",
+                "AdditionalParam": null
+            }
+        ]
+    },
+    {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": [
+            {
+                "Id": "1",
+                "Name": "Самовывоз",
+                "Cost": "0.0000",
+                "AdditionalParam": null
+            }
+        ]
+    }
+]</pre>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        Зразок реалізації запита на мові PHP
+            <pre>$data = '{
+    "jsonrpc": "2.0",
+    "method": "ProductCategory.getList",
+    "params": {
+        "data": null,
+        "key": "03ae7344fce64b8ef0c7dc3a78fae838"
+    },
+    "id": 1
+}';
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,
+'http://localhost/app/api/?format=jsonrpc2');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+"data={$data}");
+curl_setopt($ch, CURLOPT_POST, true);
+$response = curl_exec($ch);
+echo $response;
+            </pre>
+    </td>
+    <td>
+            <pre>{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "Id": "1",
+            "Name": "Фигурки"
+        },
+        {
+            "Id": "2",
+            "Name": "Манга (Комиксы)"
+        }
+    ]
+}</pre>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        Посилання на АПІ
+        <pre>http://localhost/app/api/?format=jsonrpc2</pre>
+    </td>
+    <td>
+        <pre></pre>
+    </td>
+</tr>
 
 </table>
