@@ -5,7 +5,7 @@ class SerializeJSONRPC2 implements SerializeApi
     public static function serializeData(DataContainers $data)
     {
         $resultArray = array();
-        if($data->getError()){
+        if($data->getErrorFormat()){
             $jsonrpc2 = new stdClass();
             $jsonrpc2->jsonrpc = '2.0';
             $jsonrpc2->id = null;
@@ -43,7 +43,7 @@ class SerializeJSONRPC2 implements SerializeApi
         $dataContainers = new DataContainers();
         $data = json_decode($data);
         if(!$data){
-            $dataContainers->isError();
+            $dataContainers->isErrorFormat();
             return $dataContainers;
         }
         if(!is_array($data))

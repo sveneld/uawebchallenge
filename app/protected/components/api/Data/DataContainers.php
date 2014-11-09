@@ -26,12 +26,12 @@ class DataContainers
         return $this->batch;
     }
 
-    public function isError()
+    public function isErrorFormat()
     {
         $this->errorFormat = true;
     }
 
-    public function getError()
+    public function getErrorFormat()
     {
         return $this->errorFormat;
     }
