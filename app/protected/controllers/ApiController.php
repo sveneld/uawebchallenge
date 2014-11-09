@@ -8,8 +8,11 @@
 
 class ApiController extends Controller
 {
-    public function actionIndex($format = null, $data = null)
+    public function actionIndex()
     {
+        $format = Yii::app()->request->getParam('format');
+        $data = Yii::app()->request->getParam('data');
+
         echo API::run($format, $data);
     }
 
