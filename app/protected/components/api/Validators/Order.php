@@ -9,9 +9,14 @@
 class Order extends BaseValidator {
 
     public function getList($data){
-//        $this->ValidationMap = array(
-//        );
+        $this->ValidationMapUnnesessaryFields = array(
+            'DateFrom' => 'validateDate',
+            'DateTo' => 'validateDate',
+            'Page' => 'validateInt',
+        );
+        dump($data);
         if ($this->validate($data)){
+            dump($data);
             return $this->Model->getList($data);
         } else {
             return $this;
@@ -71,6 +76,19 @@ class Order extends BaseValidator {
 
     protected  function validateIdOrder($id){
         return $this->validateInt($id);
+    }
+
+    public function validateProductSku($value){
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('Sku = :sku');
+        $criteria->select = 'Sku';
+        $criteria->params[':sku'] = $value;
+        $products = YProduct::model()->cache(3600)->find($criteria);
+        if (!$products){
+            return false;
+        } else {
+            return true;
+        }
     }
 
 } 
