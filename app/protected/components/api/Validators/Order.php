@@ -28,8 +28,8 @@ class Order extends BaseValidator {
             'Country' => 'notEmpty',
             'City' => 'notEmpty',
             'Address' => 'notEmpty',
-            'IdShippingMethod' => 'validateInt',
-            'IdPaymentMethod' => 'validateInt',
+            'IdShippingMethod' => 'validateIdShippingMethod',
+            'IdPaymentMethod' => 'validateIdPaymentMethod',
             'Discount' => 'validateFloat',
             'Fee' => 'validateFloat',
             'Total' => 'validateFloat',
@@ -87,6 +87,26 @@ class Order extends BaseValidator {
         } else {
             return true;
         }
+    }
+
+    public function validateIdShippingMethod($id){
+        if (!$this->validateInt($id)){
+            return false;
+        }
+        if (!in_array($id, Affiliate::getAllowed()->shippingMethod)){
+            return false;
+        }
+        return true;
+    }
+
+    public function validateIdPaymentMethod($id){
+        if (!$this->paymentMethod($id)){
+            return false;
+        }
+        if (!in_array($id, Affiliate::getAllowed()->shippingMethod)){
+            return false;
+        }
+        return true;
     }
 
 } 
