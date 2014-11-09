@@ -25,6 +25,8 @@
  * @property string $IdOrderStatus
  * @property string $ApiKey
  * @property string $IdAffiliate
+ * @property string $OrderCreationDate
+ * @property string $OrderModificationDate
  */
 class YOrder extends CActiveRecord
 {
@@ -53,7 +55,9 @@ class YOrder extends CActiveRecord
 			array('IdShippingMethod, IdPaymentMethod, IdOrderStatus', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymentTotal, Discount, Fee, Total, ShippingMethodName, IdShippingMethod, PaymentMethodName, IdPaymentMethod, IdOrderStatus,  ApiKey, IdAffiliate', 'safe', 'on'=>'search'),
+			array('Id, FullName, Phone, PhoneAdditional, Country, City, Address, AddressAdditional, SubTotal, ShippingTotal, PaymentTotal,
+			       Discount, Fee, Total, ShippingMethodName, IdShippingMethod, PaymentMethodName, IdPaymentMethod, IdOrderStatus,  ApiKey,
+			       IdAffiliate, OrderCreationDate, OrderModificationDate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,6 +103,8 @@ class YOrder extends CActiveRecord
 			'IdOrderStatus' => 'Id Order Status',
 			'ApiKey' => 'Api Key',
 			'IdAffiliate' => 'Id Affiliate',
+			'OrderCreationDate' => 'Order Creation Date',
+			'OrderModificationDate' => 'Order Modification Date',
 		);
 	}
 
@@ -141,6 +147,8 @@ class YOrder extends CActiveRecord
 		$criteria->compare('IdOrderStatus',$this->IdOrderStatus,true);
 		$criteria->compare('ApiKey',$this->ApiKey,true);
 		$criteria->compare('IdAffiliate',$this->IdAffiliate,true);
+		$criteria->compare('OrderCreationDate',$this->OrderCreationDate,true);
+		$criteria->compare('OrderModificationDate',$this->OrderModificationDate,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
