@@ -171,7 +171,6 @@
             "IdPaymentMethod": 2,
             "Discount": 2,
             "Fee": 2,
-            "Total": 2,
             "PhoneAdditional": "",
             "Products": [
                 {

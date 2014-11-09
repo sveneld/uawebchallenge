@@ -51,7 +51,7 @@ class OrderModel extends DataContainerResponse
 
         $order->Discount = $data->Discount;
         $order->Fee = $data->Fee;
-        $order->Total = $data->Total;
+        $order->Total = $subTotal + $order->ShippingTotal + $order->PaymentTotal + $order->Fee - $order->Discount;
 
         $order->IdPaymentMethod = $data->IdPaymentMethod;
         $order->IdOrderStatus = 1;
@@ -199,11 +199,11 @@ class OrderModel extends DataContainerResponse
     public function getStatus($data)
     {
         $criteria = new CDbCriteria();
-        $criteria->addCondition('Id = :IdOrder');
+        $criteria->addCondition('t.Id = :IdOrder');
         $criteria->params[':IdOrder'] = $data->IdOrder;
         $criteria->addCondition('IdAffiliate = :IdAffiliate');
         $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
-        $criteria->select('IdOrderStatus');
+        $criteria->select = 'IdOrderStatus';
         $criteria->with = array('OrderStatus' => array('select' => 'Name'));
         $order = YOrder::model()->cache(CACHE_LIFETIME)->find($criteria);
 
