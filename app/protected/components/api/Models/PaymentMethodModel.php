@@ -13,7 +13,7 @@ class PaymentMethodModel extends DataContainerResponse
         if (!empty(Affiliate::getAllowed()->paymentMethod)){
             $criteria->addInCondition('Id', Affiliate::getAllowed()->paymentMethod);
         }
-        $result = YPaymentMethod::model()->findAll($criteria);
+        $result = YPaymentMethod::model()->cache(CACHE_LIFETIME)->findAll($criteria);
         foreach($result as $item){
             $row = new stdClass();
             $row->Id = $item->Id;
