@@ -1,9 +1,8 @@
 <?php
-class BaseValidator extends RemoteModelCall {
+class BaseValidator extends DataContainerResponse {
     protected $ValidationMap = array();
     protected $ValidationMapUnnesessaryFields = array();
     protected $Model = null;
-//    protected $Data = null;
 
     //Example
     function __construct(){
@@ -66,10 +65,12 @@ class BaseValidator extends RemoteModelCall {
     public function validateString($value){
         return isset($value);
     }
+
     //Some additional filter?
     public function validateFloat($value){
         return filter_var($value, FILTER_VALIDATE_FLOAT);
     }
+
     public function validateDate(&$value){
         //Unix timestamp
         if (is_numeric($value)){
