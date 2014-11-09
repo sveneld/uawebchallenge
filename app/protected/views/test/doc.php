@@ -67,5 +67,14 @@
             <pre></pre>
         </td>
     </tr>
+    <tr>
+        <td>
+            Отримати список замовлень
+            <pre></pre>
+        </td>
+        <td>
+            <pre></pre>
+        </td>
+    </tr>
 
 </table>
