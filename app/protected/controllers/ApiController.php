@@ -13,7 +13,12 @@ class ApiController extends Controller
         $format = Yii::app()->request->getParam('format');
         $data = Yii::app()->request->getParam('data');
 
-        echo API::run($format, $data);
+        if($format && $data){
+            echo API::run($format, $data);
+        }
+        else {
+            echo 'Bad data';
+        }
     }
 
 
