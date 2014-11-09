@@ -16,3 +16,5 @@ Yii::createWebApplication($config)->run();
 function dump($msg, $die = 0){
     VarDumper::dump($msg, $die);
 }
+
+CONST CACHE_LIFETIME = 36000;

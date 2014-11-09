@@ -81,7 +81,7 @@ class Order extends BaseValidator {
         $criteria->addCondition('Sku = :sku');
         $criteria->select = 'Sku';
         $criteria->params[':sku'] = $value;
-        $products = YProduct::model()->cache(3600)->find($criteria);
+        $products = YProduct::model()->cache(CACHE_LIFETIME)->find($criteria);
         if (!$products){
             return false;
         } else {

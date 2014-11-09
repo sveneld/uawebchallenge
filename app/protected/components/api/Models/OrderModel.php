@@ -205,7 +205,7 @@ class OrderModel extends DataContainerResponse
         $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
         $criteria->select('IdOrderStatus');
         $criteria->with = array('OrderStatus' => array('select' => 'Name'));
-        $order = YOrder::model()->find($criteria);
+        $order = YOrder::model()->cache(CACHE_LIFETIME)->find($criteria);
 
         if (empty($order)){
             return $this->addError('No such order');

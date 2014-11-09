@@ -13,7 +13,7 @@ class ShippingMethodModel extends DataContainerResponse {
         if (!empty(Affiliate::getAllowed()->shippingMethod)){
             $criteria->addInCondition('Id', Affiliate::getAllowed()->shippingMethod);
         }
-        $result = YShippingMethod::model()->findAll($criteria);
+        $result = YShippingMethod::model()->cache(CACHE_LIFETIME)->findAll($criteria);
         foreach($result as $item){
             $row = new stdClass();
             $row->Id = $item->Id;

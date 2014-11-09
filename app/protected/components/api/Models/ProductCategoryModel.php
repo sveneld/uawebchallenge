@@ -9,7 +9,7 @@
 class ProductCategoryModel extends DataContainerResponse {
 
     public function getList($data){
-        $categories = YProductCategory::model()->findAll();
+        $categories = YProductCategory::model()->cache(CACHE_LIFETIME)->findAll();
         foreach ($categories as $category){
             $data = new stdClass();
             $data->Id = $category->Id;
