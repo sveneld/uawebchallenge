@@ -34,6 +34,17 @@ class Affiliate {
         return Yii::app()->session['affiliateId'];
     }
 
+    public static function setAffiliatePercentFromSales($value)
+    {
+        Yii::app()->session['affiliatePercentFromSales'] = $value;
+        self::$affiliateId = $value;
+    }
+
+    public static function getAffiliatePercentFromSales()
+    {
+        return Yii::app()->session['affiliatePercentFromSales'];
+    }
+
     public static function setAllowed($value)
     {
         Yii::app()->session['allowed'] = $value;
