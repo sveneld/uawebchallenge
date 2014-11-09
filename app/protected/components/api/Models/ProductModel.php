@@ -14,7 +14,7 @@ class ProductModel extends DataContainerResponse
             $criteria->addCondition('Category.IdCategory = :CategoryId');
             $criteria->params[':CategoryId'] = $data->IdCategory;
         }
-        $result = YProduct::model()->findAll($criteria);
+        $result = YProduct::model()->cache(CACHE_LIFETIME)->findAll($criteria);
         foreach ($result as $item) {
             $row = new stdClass();
             $row->Id = $item->Id;
