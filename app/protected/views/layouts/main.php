@@ -23,7 +23,10 @@
 <div class="container" id="page">
 
 	<div id="header">
-<!--		<div id="logo">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</div>-->
+		<div id="logo">
+            <div style="padding-top: 5px;display: inline-block;line-height: 64px;"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+            <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/HELIRADIO.png" id="logo_img"/>
+        </div>
 	</div><!-- header -->
 
 <!--	<div id="mainmenu">-->
@@ -50,7 +53,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by Heliradio<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->

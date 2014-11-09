@@ -20,6 +20,7 @@ body
 	margin: 0;
 	padding: 0;
 	border-top: 3px solid #C9E0ED;
+    vertical-align: middle;
 }
 
 #content
@@ -43,8 +44,16 @@ body
 
 #logo
 {
-	padding: 10px 20px;
+	margin: 10px;
 	font-size: 200%;
+    vertical-align: middle;
+}
+
+#logo_img
+{
+    display: inline;
+    float: right;
+    width: 64px;
 }
 
 #mainmenu
