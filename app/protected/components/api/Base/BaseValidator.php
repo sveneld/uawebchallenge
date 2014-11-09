@@ -29,7 +29,7 @@ class BaseValidator extends RemoteModelCall {
                 } else if (!$isNessesaryFields && !isset($data->$DataFiledName)) {
                 //Обязательно, задано / Необязательно, задано
                 } else {
-                    $DataFieldValidationResult = $this->$ValidationMethodName(isset($data->$DataFiledName) ? $data->$DataFiledName : null);
+                    $DataFieldValidationResult = $this->$ValidationMethodName($data->$DataFiledName);
                     if (!$DataFieldValidationResult) {
                         $success = false;
                         $this->addError('Validation of field "' . get_class($this->Model) . ' -> ' . $DataFiledName . '" as "'.$data->$DataFiledName.'" failed!');
@@ -76,9 +76,7 @@ class BaseValidator extends RemoteModelCall {
             return true;
         } else {
             if(strtotime($value)){
-                dump('validateDate strtotime() true');
                 $value = strtotime($value);
-                dump($value);
                 return true;
             } else {
                 return false;

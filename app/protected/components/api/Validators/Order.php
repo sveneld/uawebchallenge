@@ -14,9 +14,7 @@ class Order extends BaseValidator {
             'DateTo' => 'validateDate',
             'Page' => 'validateInt',
         );
-        dump($data);
         if ($this->validate($data)){
-            dump($data);
             return $this->Model->getList($data);
         } else {
             return $this;

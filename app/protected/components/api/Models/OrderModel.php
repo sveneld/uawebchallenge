@@ -145,7 +145,6 @@ class OrderModel extends DataContainerResponse
 
     public function getList($data)
     {
-        dump($data);
         $criteria = new CDbCriteria();
         $criteria->addCondition('IdAffiliate = :IdAffiliate');
         $criteria->params[':IdAffiliate'] = Affiliate::getAffiliateId();
